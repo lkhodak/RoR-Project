@@ -1,0 +1,46 @@
+<h1>Editing CTO data</h1>
+ 
+<%= form_for :cto, url: cto_path(@cto), method: :patch do |ct| %>
+  <% if @cto.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@cto.errors.count, "error") %> prohibited this CTO from being saved:</h2>
+    <ul>
+    <% @cto.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+      
+    <% end %>
+    </ul>
+  </div>
+ <% end %>
+  
+  <p>
+    <%= ct.label :name %><br>
+    <%= ct.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= ct.label :description %><br>
+    <%= ct.text_area :description %>
+  </p>
+  
+   <p>
+    <%= ct.label :address %><br>
+    <%= ct.text_area :address %>
+  </p>
+  
+  <p>
+    <%= ct.label :contacts %><br>
+    <%= ct.text_area :contacts %>
+  </p>
+  
+  <p>
+    <%= ct.label :schedule %><br>
+    <%= ct.text_area :schedule %>
+  </p>
+ 
+  <p>
+    <%= ct.submit %>
+  </p>
+ 
+<% end %>
+ 

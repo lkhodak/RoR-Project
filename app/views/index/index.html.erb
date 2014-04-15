@@ -1,0 +1,38 @@
+<!-- It's a form to search a CTO that are based on predefined criteria -->
+
+<%= form_for :article do |f| %>
+<div class="navbar-form navbar-left">
+	<span>Пошук СТО за критеріями</span><br/>
+
+	<div class="SeachFormElement"> 
+		<%= f.label :'за рейтингом' %>
+		<br>
+		<%= f.check_box :ratingFlag %>
+	</div>
+	
+	<div class="SeachFormElement">
+		<%= f.label :'за знижками' %>
+		<br>
+		<%= f.check_box :discountFlag %>
+	</div>
+	
+	<div class="SeachFormElement"> 
+		<%= f.label :'за завантаженістю' %>
+		<br>
+		<%= f.check_box :loadFlag %>
+	</div>
+	
+
+	<div class="SeachFormElement">
+		<%= f.submit "Пошук", :disable_with => '...'%>
+	</div>
+</div>
+<% end %>
+
+<% @ctosByRating.each do |cto| %>
+<h1>CTO:<%= cto.cto_name %></h1>
+<h1>Address:<%= cto.cto_addr %></h1>
+<h1>Discount:<%= cto.cto_discount %></h1>
+
+<% end %>
+

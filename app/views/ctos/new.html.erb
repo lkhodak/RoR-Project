@@ -1,0 +1,32 @@
+<div>Ввести дані для нової станції технічного обслуговування</div>
+<%= form_for :cto, url: ctos_path do |ct| %>
+  <p>
+    <%= ct.label :name %><br>
+    <%= ct.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= ct.label :description %><br>
+    <%= ct.text_area :description %>
+  </p>
+  
+   <p>
+    <%= ct.label :address %><br>
+    <%= ct.text_area :address %>
+  </p>
+  
+  <p>
+    <%= ct.label :contacts %><br>
+    <%= ct.text_area :contacts %>
+  </p>
+  
+  <p>
+    <%= ct.label :schedule %><br>
+    <%= ct.text_area :schedule %>
+  </p>
+ 
+  <p>
+    <%= ct.submit 'Submit', :class => 'btn btn-lg btn-success' %>
+  </p>
+<% end %>
+
