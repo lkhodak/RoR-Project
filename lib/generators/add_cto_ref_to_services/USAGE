@@ -1,0 +1,8 @@
+Description:
+    Explain the generator
+
+Example:
+    rails generate add_cto_ref_to_services Thing
+
+    This will create:
+        what/will/it/create

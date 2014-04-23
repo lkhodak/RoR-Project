@@ -24,3 +24,35 @@
   <strong>Schedule:</strong>
   <%= @cto.schedule %>
 </p>
+
+
+<h2>Services</h2>
+<% @cto.services.each do |service| %>
+    <p>
+      <strong>Description:</strong>
+      <%= service.description %>
+    </p>
+
+    <p>
+      <strong>Price:</strong>
+      <%= service.price %>
+    </p>
+<% end %>
+
+<h2>Add a service:</h2>
+<%= form_for([@cto, @cto.services.build]) do |f| %>
+    <p>
+      <%= f.label :Description %><br>
+      <%= f.text_field :description %>
+    </p>
+    <p>
+      <%= f.label :Price %><br>
+      <%= f.text_field :price %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
+
+<%= link_to 'Edit CTO', edit_cto_path(@cto) %> |
+<%= link_to 'Back to Ctos', ctos_path %>

@@ -1,33 +1,48 @@
-<div class="panel panel-default">
+<div >
 	<!-- Default panel contents -->
-	<div class="panel-heading">
+	<div >
 		Listing CTOs
 	</div>
 
 	<%= link_to 'New CTO', new_cto_path %>
 	<br/>
-	<table class="table">
-		<tr>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Address</th>
-			<th>Contacts</th>
-			<th>Schedule</th>
-			<td>Operations</td>
-		</tr>
-
-		<% @ctos.each do |cto| %>
-		<tr>
-			<td><%= cto.name %></td>
-			<td><%= cto.description %></td>
-			<td><%= cto.address %></td>
-			<td><%= cto.contacts %></td>
-			<td><%= cto.schedule %></td>
-			<td> <%= link_to 'Edit', edit_cto_path(cto) %>
-			<br/>
-			<%= link_to 'Remove', cto_path(cto),
-			method: :delete, data: { confirm: 'Are you sure?' } %> </td>
-		</tr>
-		<% end %>
-	</table>
 </div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+      Name
+    </div>
+    <div class="col-md-1">
+      Description
+    </div>
+    <div class="col-md-1">
+      Address
+    </div>
+    <div class="col-md-1">
+      Contacts
+    </div>
+    <div class="col-md-1">
+      Schedule
+    </div>
+    <div class="col-md-3">
+      Operations
+    </div>
+  </div>
+
+  <% @ctos.each do |cto| %>
+      <div class="row">
+        <div class="col-md-1"><%= cto.name %></div>
+        <div class="col-md-1"><%= cto.description %></div>
+        <div class="col-md-1"><%= cto.address %></div>
+        <div class="col-md-1"><%= cto.contacts %></div>
+        <div class="col-md-1"><%= cto.schedule %></div>
+        <div class="col-md-3">
+          <%= link_to 'Edit', edit_cto_path(cto) %> <%= link_to 'Show', cto_path(cto)%> <%= link_to 'Remove', cto_path(cto),
+                      method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+  <% end %>
+</div>
+

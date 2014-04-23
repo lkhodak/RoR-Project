@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2694365418">
+    <data-source source="LOCAL" name="Rails AvtoSite: development" uuid="b966bb7e-be11-4cfa-83d6-9f161e205de3">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Users\lkhodak\Documents\Aptana Studio 3 Workspace\AvtoSite\db\development.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails AvtoSite: test" uuid="1fdde2dd-730b-4e42-a02f-6a92903d816f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Users\lkhodak\Documents\Aptana Studio 3 Workspace\AvtoSite\db\test.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

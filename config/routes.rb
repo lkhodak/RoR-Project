@@ -1,5 +1,8 @@
 CTO::Application.routes.draw do
-  resources :ctos
+  get "services/create"
+  resources :ctos do
+    resources :services
+  end
   
   root 'index#index'
  

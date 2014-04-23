@@ -6,7 +6,6 @@ class CreateCtos < ActiveRecord::Migration
       t.text :address
       t.text :contacts
       t.text :schedule
-
       t.timestamps
     end
   end
