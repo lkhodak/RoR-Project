@@ -1,48 +1,36 @@
-<div >
-	<!-- Default panel contents -->
-	<div >
-		Listing CTOs
-	</div>
+<div class="container" style="width:100%;margin-top:20px">
+  <% @ctos.each_slice(3) do |ctoChunk| %>
+      <div class="row" style="margin-right: 10px;clear:both">
+        <% ctoChunk.each do |cto| %>
+            <div class="col-md-1 panel panel-info" style=" border:2px solid;width:32%;padding:5px;margin:5px;float: left">
+              <div class="panel-heading"><span style="font-weight:bold">Назва:</span><span><%= cto.name %></span></div>
+              <div class="panel-body"><span style="font-weight:bold">Опис:</span>
 
-	<%= link_to 'New CTO', new_cto_path %>
-	<br/>
-</div>
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-1">
-      Name
-    </div>
-    <div class="col-md-1">
-      Description
-    </div>
-    <div class="col-md-1">
-      Address
-    </div>
-    <div class="col-md-1">
-      Contacts
-    </div>
-    <div class="col-md-1">
-      Schedule
-    </div>
-    <div class="col-md-3">
-      Operations
-    </div>
-  </div>
-
-  <% @ctos.each do |cto| %>
-      <div class="row">
-        <div class="col-md-1"><%= cto.name %></div>
-        <div class="col-md-1"><%= cto.description %></div>
-        <div class="col-md-1"><%= cto.address %></div>
-        <div class="col-md-1"><%= cto.contacts %></div>
-        <div class="col-md-1"><%= cto.schedule %></div>
-        <div class="col-md-3">
-          <%= link_to 'Edit', edit_cto_path(cto) %> <%= link_to 'Show', cto_path(cto)%> <%= link_to 'Remove', cto_path(cto),
-                      method: :delete, data: { confirm: 'Are you sure?' } %>
-        </div>
+                <div><%= cto.description %></div>
+                <ul class="list-group">
+                  <li class="list-group-item"><span style="font-weight:bold">Розклад:</span>
+                    <div><%= cto.schedule %></div>
+                  </li>
+                  <li class="list-group-item">
+                    <span style="font-weight:bold">Адреса:</span><span><%= cto.address %></span>
+                  </li>
+                  <li class="list-group-item">
+                    <div style="">
+                      <span style="font-weight:bold">Контакти:</span>
+                      <div><%= cto.contacts %></div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div style="clear:both;width:100%;text-align:center">
+                      <span style="margin-right:1px;width:32%;"><%= link_to 'Редагувати', edit_cto_path(cto), class: 'btn btn-default' %></span>
+                      <span style="margin-right:1px;width:32%;"><%= link_to 'Показати', cto_path(cto), class: 'btn btn-default' %></span>
+                      <span style="margin-right:1px;width:32%;"><%= link_to 'Видалити', cto_path(cto), class: 'btn btn-default', method: :delete, data: {confirm: 'Ви впевнені?'} %></span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+           <% end %>
       </div>
   <% end %>
 </div>
-
