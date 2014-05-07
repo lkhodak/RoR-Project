@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507110505) do
+ActiveRecord::Schema.define(version: 20140507123706) do
 
   create_table "ctos", force: true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140507110505) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "carNumber"
+    t.string   "uniqueCode"
   end
 
   add_index "orders", ["service_id"], name: "index_orders_on_service_id"
