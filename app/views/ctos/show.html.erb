@@ -37,6 +37,11 @@
       <strong>Price:</strong>
       <%= service.price %>
     </p>
+
+    <p>
+      <strong>Замовити послугу</strong>
+      <%= link_to 'Замовити послугу', new_cto_service_order_path(@cto.id, service.id) %>
+    </p>
 <% end %>
 
 <h2>Add a service:</h2>

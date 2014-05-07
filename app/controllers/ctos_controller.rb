@@ -19,6 +19,8 @@ class CtosController < ApplicationController
   #Show all available CTO
   def index
     @ctos = Cto.all
+    @carBrends=getModelList
+    @carServices=getServicesList
   end
 
   #Load object to put CTO data to edit
@@ -29,7 +31,6 @@ class CtosController < ApplicationController
   #Update edited data
   def update
     @cto = Cto.find(params[:id])
-
     if @cto.update(cto_params)
       redirect_to ctos_path
     else
@@ -50,6 +51,30 @@ class CtosController < ApplicationController
   private
   def cto_params
     params.require(:cto).permit(:name, :description, :address, :contacts,:schedule)
+  end
+
+  #TODO should be refactored to got the data from dfb or international file
+  def getModelList
+    @ModelArray= Array.new
+    @ModelArray.append("Audi")
+    @ModelArray.append("BMW")
+    @ModelArray.append("Shevrolet")
+    @ModelArray.append("Toyota")
+    @ModelArray.append("Nissan")
+    @ModelArray.append("Honda")
+    #generate mockup model
+    return  @ModelArray
+  end
+
+  def getServicesList
+    @ServicesArray= Array.new
+    @ServicesArray.append("Fix engine")
+    @ServicesArray.append("Change wheels")
+    @ServicesArray.append("Fix electricity")
+    @ServicesArray.append("change color")
+    @ServicesArray.append("Wash car")
+      #generate mockup model
+    return  @ServicesArray
   end
 
 end

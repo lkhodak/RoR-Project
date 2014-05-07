@@ -12,4 +12,12 @@
  *= require bootstrap.min
  */
 
+.LVSSearchFormHeader {font-size:14px;font-weight: bold;margin-left:2px}
+.LVSSearchPanel {width:15%;float: left;text-align: left;margin-top:24px}
+.LVSCarTypes, .LVSCarServices, .LVSPriceRange, .LVSCarServiceDirections {margin:3px}
 
+.LVSPriceRange > .LVSSearchTreeMenuItem, .LVSRatingRange > .LVSSearchTreeMenuItem,.LVSCarServiceDirections > .LVSSearchTreeMenuItem,.LVSCarTypes > .LVSSearchTreeMenuItem   {margin-left:15px;}
+
+
+.LVSCarServicesRatingFromID {width:10px}
+.LVSSearchButton {margin-top:15px;align: right;float: right;margin-bottom: 5px;margin-right: 3px}
