@@ -39,7 +39,6 @@
   <tbody>
   <% @cto.services.each do |service| %>
       <tr>
-
         <td><%= service.description %></td>
         <td><%= service.price %></td>
         <td><%= link_to 'Замовити послугу', new_cto_service_order_path(@cto.id, service.id) %></td>

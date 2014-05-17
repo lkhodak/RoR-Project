@@ -1,5 +1,6 @@
 class Cto < ActiveRecord::Base
   has_many :services
+  max_paginates_per 10
   validates :name, presence: true
   validates :description, presence: true
   validates :address, presence: true

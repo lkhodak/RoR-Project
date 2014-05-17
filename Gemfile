@@ -28,14 +28,29 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-# Add device plugin to have user log in functionality
-gem 'devise'
 
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+
+#SEPARATE SECTION TO ENABLE CUSTOM PLUGINS
+
+# Add device plugin to have user log in functionality
+gem 'devise'
+
+# Add event calendar for handling events
+gem 'event-calendar', :require => 'event_calendar'
+
+# faker and populators are used to generate fake data for db
+gem 'faker', '~> 1.3.0'
+gem 'populator', '~> 1.0.0'
+
+# kaminari is a pagination plugin
+gem 'kaminari', '~> 0.15.1'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
