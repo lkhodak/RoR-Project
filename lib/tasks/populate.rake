@@ -6,8 +6,19 @@ namespace :db do
 
     [Cto, Service, User, Order].each(&:delete_all)
 
-    #Create list of Cros to run experimentation
-    Cto.populate 15 do |cto|
+
+    # Create few empty cto.TODO Refactor to create different data cases
+    Cto.populate 60 do |cto|
+      cto.name=Faker::Company.name
+      cto.description=Faker::Company.catch_phrase
+      cto.address=Faker::Address.street_address
+      cto.contacts=Faker::PhoneNumber.cell_phone
+    end
+
+    #Create list of Cros with related records
+    Cto.populate 10 do |cto|
+
+
       cto.name=Faker::Company.name
       cto.description=Faker::Company.catch_phrase
       cto.address=Faker::Address.street_address
@@ -43,11 +54,11 @@ namespace :db do
               when 0
                 order.status= 'New'
               when 1
-                order.status=   'In Process'
+                order.status= 'In Process'
               when 2
-                order.status=   'Confirmed'
+                order.status= 'Confirmed'
               when 3
-                order.status=   'Ordered'
+                order.status= 'Ordered'
               else
                 order.status='Completed'
             end
@@ -57,9 +68,9 @@ namespace :db do
             order.requestDate=Date.current
             order.plannedDate=Date.current + 2.days
             order.confirmationDate=Date.current
-         end
+          end
         end
       end
+    end
   end
-  end
-  end
+end
