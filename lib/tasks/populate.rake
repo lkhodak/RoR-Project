@@ -8,15 +8,15 @@ namespace :db do
 
 
     # Create few empty cto.TODO Refactor to create different data cases
-    Cto.populate 60 do |cto|
-      cto.name=Faker::Company.name
-      cto.description=Faker::Company.catch_phrase
-      cto.address=Faker::Address.street_address
-      cto.contacts=Faker::PhoneNumber.cell_phone
-    end
+    # Cto.populate 60 do |cto|
+    #   cto.name=Faker::Company.name
+    #   cto.description=Faker::Company.catch_phrase
+    #   cto.address=Faker::Address.street_address
+    #   cto.contacts=Faker::PhoneNumber.cell_phone
+    # end
 
     #Create list of Cros with related records
-    Cto.populate 10 do |cto|
+    Cto.populate 15 do |cto|
 
 
       cto.name=Faker::Company.name
@@ -38,11 +38,15 @@ namespace :db do
           user.email = Faker::Internet.email
           user.encrypted_password = User.new(:password => password).encrypted_password
           user.sign_in_count=1
+
           #Each user will have few orders with different states.Only changed state will show that order was changed
           Order.populate 2 do |order|
             order.service_id=service.id
             order.user_id=user.id
             order.price=price*Faker::Number.number(1).to_f
+
+            #set role for user. 0 - normal user, 1 - operator, 2 - cto owner, 3 - company owner
+            user.role=rand (2)
 
             #New - order is only received
             #In Process - operator is working on this order

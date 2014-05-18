@@ -51,6 +51,9 @@ gem 'populator', '~> 1.0.0'
 # kaminari is a pagination plugin
 gem 'kaminari', '~> 0.15.1'
 
+# CanCan plugin is used for authorization (user roles)
+gem "cancan"
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

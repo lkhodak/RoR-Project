@@ -91,9 +91,16 @@
                 <span style="font-weight:bold">Адреса:</span><span><%= cto.address %></span>
                 <span style="font-weight:bold">Контакти:</span><div><%= cto.contacts %></div>
                 <div style="clear:both;width:100%;text-align:center">
+
+                     <% if can? :read, cto %>
                       <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Редагувати', edit_cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
+                     <% end %>
+
                       <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Показати', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
+
+                    <% if can? :destroy, cto %>
                       <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Видалити', cto_path(cto), class: 'btn btn-default',style: 'font-size:10px', method: :delete, data: {confirm: 'Ви впевнені?'} %></span>
+                    <% end %>
                     </div>
                 </div>
             </div>
