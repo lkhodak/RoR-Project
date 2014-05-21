@@ -1,0 +1,28 @@
+<h1> Review the orders status for cto</h1>
+
+<table>
+  <caption>Замовлення по сто- треба додати форму для пошуку та фільтру замовлень по даті, статусу і сто </caption>
+  <tr>
+    <th>ID</th>
+    <th>price</th>
+    <th>request date</th>
+    <th>confirmation date</th>
+    <th>status</th>
+    <th>plannedDate</th>
+    <th>carNumber</th>
+    <th>uniqueCode</th>
+  </tr>
+  <% @orders.each do |order| %>
+      <tr>
+        <td style="padding-left:10px"><%= order.id %></td>
+        <td style="padding-left:10px"><%= order.price %></td>
+        <td style="padding-left:10px"><%= order.requestDate %></td>
+        <td style="padding-left:10px"><%= order.confirmationDate %></td>
+        <td style="padding-left:10px"><%= order.status %></td>
+        <td style="padding-left:10px"><%= order.plannedDate %></td>
+        <td style="padding-left:10px"><%= order.carNumber %></td>
+        <td style="padding-left:10px"><%= order.uniqueCode %></td>
+      </tr>
+  <% end %>
+</table>
+

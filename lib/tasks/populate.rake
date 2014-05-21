@@ -6,7 +6,6 @@ namespace :db do
 
     [Cto, Service, User, Order].each(&:delete_all)
 
-
     # Create few empty cto.TODO Refactor to create different data cases
     # Cto.populate 60 do |cto|
     #   cto.name=Faker::Company.name
@@ -17,13 +16,10 @@ namespace :db do
 
     #Create list of Cros with related records
     Cto.populate 15 do |cto|
-
-
       cto.name=Faker::Company.name
       cto.description=Faker::Company.catch_phrase
       cto.address=Faker::Address.street_address
       cto.contacts=Faker::PhoneNumber.cell_phone
-
 
       #Create list of services
       Service.populate 4 do |service|
@@ -46,7 +42,7 @@ namespace :db do
             order.price=price*Faker::Number.number(1).to_f
 
             #set role for user. 0 - normal user, 1 - operator, 2 - cto owner, 3 - company owner
-            user.role=rand (2)
+            user.role=rand (3)
 
             #New - order is only received
             #In Process - operator is working on this order

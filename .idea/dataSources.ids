@@ -6,4 +6,7 @@
   <data-source source="LOCAL" name="Rails AvtoSite: test" uuid="1fdde2dd-730b-4e42-a02f-6a92903d816f">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
+  <data-source source="LOCAL" name="Rails AvtoSite: production" uuid="18323c06-dd66-4544-b2f2-17baff578726">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
 </component>
