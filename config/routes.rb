@@ -1,4 +1,6 @@
 CTO::Application.routes.draw do
+  resources :reviews
+
   get "orders/new"
   get "orders/create"
   get "orders/index"

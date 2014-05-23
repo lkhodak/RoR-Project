@@ -54,6 +54,8 @@ gem 'kaminari', '~> 0.15.1'
 # CanCan plugin is used for authorization (user roles)
 gem "cancan"
 
+# Ransack plugin is used for easy building of search forms
+gem "ransack"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

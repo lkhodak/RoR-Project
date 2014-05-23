@@ -22,13 +22,10 @@
 
   <!--TODO put car producers into db or separate file -->
   <div class="LVSCarTypes">
-    <div class="LVSSearchFormHeader">Всі марки</div>
-    <% @carBrends.each do |brend| %>
-        <div class="checkbox LVSSearchTreeMenuItem">
-          <label>
-            <input type="checkbox" class="LVSSearchTreeMenuItem"><%= brend %>
-          </label>
-        </div>
+    <%= search_form_for @search do |f| %>
+    <%= f.label :description_cont, "Марка автомобіля" %>
+    <%= f.text_field :description_cont %>
+    <div class="btn btn-default LVSSearchButton"><%=f.submit "Пошук" %></div>
     <% end %>
 
    </div>
@@ -51,25 +48,14 @@
   </div>
 
   <!-- Add logic to get price from X to Y -->
-  <div class="LVSPriceRange" id="LKSearchFormPriceId">
-    <div class="LVSSearchFormHeader"> Ціна </div>
 
-     <div  class="LVSSearchTreeMenuItem">
-        <label for="LVSCarServicesPriceFromID">Від</label>
-         <input type="text" class="form-control" id="LVSCarServicesPriceFromID" placeholder="Мінімальна ціна">
-        <label for="LVSCarServicesPriceToID">До</label>
-        <input type="text" class="form-control" id="LVSCarServicesPriceToID" placeholder="Максимальна ціна">
-    </div>
-
-    </div>
-  <!-- Add logic to get rating feautres -->
   <div  class="LVSRatingRange" id="LKSearchFormRatingId">
     <div class="LVSSearchFormHeader">Рейтинг</div>
     <div  class="LVSSearchTreeMenuItem">
       <label for="LVSCarServicesRatingFromID">Від</label>
-      <input type="text" class="form-control" id="LVSCarServicesRatingFromID" placeholder="Мінімальна ціна">
+      <input type="text" class="form-control" id="LVSCarServicesRatingFromID" placeholder="Мінімальний рейтинг">
       <label for="LVSCarServicesRatingToID">До</label>
-      <input type="text" class="form-control" id="LVSCarServicesRatingToID" placeholder="Максимальна ціна">
+      <input type="text" class="form-control" id="LVSCarServicesRatingToID" placeholder="Максимальний рейтинг">
     </div>
    </div>
   <button type="submit" class="btn btn-default LVSSearchButton">Шукати</button>

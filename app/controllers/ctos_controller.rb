@@ -18,7 +18,9 @@ class CtosController < ApplicationController
 
   #Show all available CTO
   def index
-    @ctos = Cto.all.page params[:page]
+    @search = Cto.search(params[:q])
+    @ctos=@search.result.page params[:page]
+    #@ctos = Cto.all.page params[:page]
     @carBrends=getModelList
     @carServices=getServicesList
   end
