@@ -47,7 +47,6 @@
   </tbody>
 </table>
 
-
 <h2>Додати нову послугу (тільки для користувачів рівня адміністратора):</h2>
 <%= form_for([@cto, @cto.services.build]) do |f| %>
     <p>
@@ -61,6 +60,22 @@
     <p>
       <%= f.submit %>
     </p>
+<% end %>
+
+<h2>Відгуки про дану сто (todo: add other fields and styling)</h2>
+<% @cto.services.each do |service| %>
+    <hr>
+    <p>Evaluated service:<%= service.description %></p>
+    <% service.reviews.each do |review| %>
+        <p>
+          Description:<%= review.reviewText %>
+        </p>
+
+        <p>
+          Mark:<%= review.mark %>
+        </p>
+
+    <% end %>
 <% end %>
 
 <%= link_to 'Редагувати дані компанії', edit_cto_path(@cto) %> |
