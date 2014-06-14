@@ -1,4 +1,6 @@
 CTO::Application.routes.draw do
+  resources :schedules
+
   resources :reviews
 
   get "orders/new"
@@ -10,6 +12,7 @@ CTO::Application.routes.draw do
     resources :services do
       resources :orders
     end
+    resources :schedules
   end
    root 'ctos#index'
  end

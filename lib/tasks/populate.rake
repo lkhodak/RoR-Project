@@ -4,12 +4,12 @@ namespace :db do
     require 'faker'
     require 'populator'
 
-    [Cto, Service, User, Order, Review].each(&:delete_all)
+    [Cto, Service, User, Order, Review, Schedule].each(&:delete_all)
 
-    # Create few empty cto.TODO Refactor to create different data cases
+    # Create few empty cto.
 
     #Create list of Cros with related records
-    Cto.populate 10 do |cto|
+    Cto.populate 20 do |cto|
 
       #Create random generator for models that are served by CTO. Will be added to CTO description
       modelType=""
@@ -31,9 +31,32 @@ namespace :db do
       cto.description=Faker::Company.catch_phrase + modelType
       cto.address=Faker::Address.street_address
       cto.contacts=Faker::PhoneNumber.cell_phone
+    end
 
+
+    #Create  ranges of busy hours to update
+    firstEvent=DateTime.new(DateTime.now.year,DateTime.now.month,DateTime.now.day,9,0)..DateTime.new(DateTime.now.year,DateTime.now.month,DateTime.now.day,10,30)
+    secondEvent=DateTime.new(DateTime.now.year,DateTime.now.month,DateTime.now.day,12,0)..DateTime.new(DateTime.now.year,DateTime.now.month,DateTime.now.day,13,0)
+    thirdEvent=DateTime.new(DateTime.now.year,DateTime.now.month,DateTime.now.day,15,0)..DateTime.new(DateTime.now.year,DateTime.now.month,DateTime.now.day,17,0)
+
+    scheduleArray=[firstEvent,secondEvent,thirdEvent]
+
+    # Populate cto with array
+    Cto.all.each do |cto|
+      index=0
+      Schedule.populate 3 do |schedule|
+        schedule.cto_id=cto.id
+        #Let's set schedule start date as today
+        schedule.date=Date.current
+        schedule.start=scheduleArray[index].begin
+        schedule.end=scheduleArray[index].end
+        index+=1
+      end
+    end
+
+    Cto.all.each do |cto|
       #Create list of services
-      Service.populate 4 do |service|
+      Service.populate 6 do |service|
 
         service.cto_id=cto.id
         service.description=Populator.sentences(2..10)
@@ -89,6 +112,7 @@ namespace :db do
 
             order.carNumber=Faker::Lorem::word
             order.uniqueCode=SecureRandom.hex(10)
+            # Set planned date as date for event.
             order.requestDate=Date.current
             order.plannedDate=Date.current + 2.days
             order.confirmationDate=Date.current
