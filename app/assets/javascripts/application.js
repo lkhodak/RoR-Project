@@ -15,3 +15,6 @@
 //= require turbolinks
 //= require_tree .
 //=require bootstrap.js
+//=require "http://maps.google.com/maps/api/js?sensor=true"
+//=require GoogleRoutes.js
+

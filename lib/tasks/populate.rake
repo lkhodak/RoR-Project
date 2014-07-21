@@ -3,35 +3,55 @@ namespace :db do
   task :populate => :environment do
     require 'faker'
     require 'populator'
+    require 'active_support'
+
 
     [Cto, Service, User, Order, Review, Schedule].each(&:delete_all)
 
     # Create few empty cto.
 
-    #Create list of Cros with related records
-    Cto.populate 20 do |cto|
 
-      #Create random generator for models that are served by CTO. Will be added to CTO description
-      modelType=""
-      case rand(6)
-        when 0
-          modelType=' models:Audi'
-        when 1
-          modelType=' models:BMW'
-        when 2
-          modelType=' models:Toyota'
-        when 3
-          modelType=' models:Nissan'
-        when 4
-          modelType=' models:Mersedes'
-        when 5
-          modelType=' models:Honda'
-      end
-      cto.name=Faker::Company.name
-      cto.description=Faker::Company.catch_phrase + modelType
-      cto.address=Faker::Address.street_address
-      cto.contacts=Faker::PhoneNumber.cell_phone
+    #Load data from list
+    listDb=Marshal.load(File.binread('d:/my_xml_data_file.xml'))
+    puts listDb
+
+    #Create list of Cros with related records
+    # Cto.populate 20 do |cto|
+    #   #Create random generator for models that are served by CTO. Will be added to CTO description
+    #   modelType=""
+    #   case rand(6)
+    #     when 0
+    #       modelType=' models:Audi'
+    #     when 1
+    #       modelType=' models:BMW'
+    #     when 2
+    #       modelType=' models:Toyota'
+    #     when 3
+    #       modelType=' models:Nissan'
+    #     when 4
+    #       modelType=' models:Mersedes'
+    #     when 5
+    #       modelType=' models:Honda'
+    #   end
+    #   cto.name=Faker::Company.name
+    #   cto.description=Faker::Company.catch_phrase + modelType
+    #   cto.address=Faker::Address.street_address
+    #   cto.contacts=Faker::PhoneNumber.cell_phone
+    # end
+
+    #Populate with real data from list.if.ua.TODO - get real data from crawler
+    i=0
+
+    Cto.populate listDb.keys.length do |cto|
+       cto.name=listDb[i]['name'].force_encoding("utf-8")
+       cto.description=listDb[i]['description'].force_encoding("utf-8")
+       #cto.address=listDb[i]['address'].force_encoding("utf-8")
+       cto.address= Faker::Address.street_address
+
+       cto.contacts=listDb[i]['business_phone'].force_encoding("utf-8")
+       i=i+1
     end
+
 
 
     #Create  ranges of busy hours to update

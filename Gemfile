@@ -57,6 +57,8 @@ gem "cancan"
 # Ransack plugin is used for easy building of search forms
 gem "ransack"
 
+gem "geocoder"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

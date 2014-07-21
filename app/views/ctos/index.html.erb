@@ -1,77 +1,73 @@
-
-<!-- TODO: Create role dependent page that allows to show links that depends on role.-->
-<%= link_to 'Створити нове СТО', new_cto_path %>|<a href="#">Переглянути поточні замовлення</a>
-
-
-
-
-<div class="panel panel-default LVSSearchPanel">
-  <div class="panel-heading">Пошук Автомобільних сервісів за критеріями</div>
-
-  <!--TODO put car producers into db or separate file -->
-  <div class="LVSCarTypes">
+ <span class="LVSCarTypes">
     <%= search_form_for @search do |f| %>
-    <div>
-      <%= f.label :description_cont, "Марка автомобіля" %>
-     <%= f.text_field :description_cont %>
-    </div>
+        <span>
+          <%= f.label :description_cont, "Марка автомобіля" %>
+          <%= f.text_field :description_cont %>
+        </span>
 
-     <div>
-        <%= f.label :services_description_cont, "Послуга" %>
-        <%= f.text_field :services_description_cont %>
-     </div>
+        <span>
+          <%= f.label :services_description_cont, "Послуга" %>
+          <%= f.text_field :services_description_cont %>
+        </span>
 
-
-    <div>
-        <%= f.label :services_reviews_rating_in, "Рейтинг послуги" %>
-        <%= f.text_field :services_reviews_mark_in %>
-    </div>
-
-    <!-- Пошук найближчих СТО відносно адреси проживання або поточного місця знаходження-->
-    <div>Моя адреса (Зробити пошук наявних сто відносно координат зареєстрованого користувача)</div>
-    <div>Додати бажаний час запису на сто</div>
-
-    <div class="btn btn-default LVSSearchButton"><%=f.submit "Пошук" %></div>
+        <span>
+          <!-- If registered then we can enter it's location. Otherwise let's get gps to get into account search resutls. TODO. We need to return to client search results and then javascript will sort them by location -->
+          userlocation: <input type="text" name="user location">
+        </span>
+       <span class="btn btn-default LVSSearchButton"><%=f.submit "Пошук" %></span>
     <% end %>
+  </span>
 
-   </div>
- </div>
+<div class="container-fluid" id="main">
+  <div class="row">
+    <div class="col-xs-8" id="left">
 
+      <% @ctos.each do |cto| %>
 
-<div class="container" style="width:76%;margin-top:20px;font-size:11px;float:left;padding-right: 100px">
-  <% @ctos.each_slice(3) do |ctoChunk| %>
-      <div class="row" style="margin-right: 10px;clear:both">
-        <% ctoChunk.each do |cto| %>
-            <div class="col-md-1 panel panel-info" style=" border:2px solid;width:20%;padding:5px;margin:5px;float: left;">
+            <div class="panel panel-info">
+              <div>
 
-              <div class="panel-heading"><span style="font-weight:bold">Назва:</span><span><%= cto.name %></span> <div>Photo placeholder</div></div>
-              <div class="panel-body"><span style="font-weight:bold">Опис:</span>
+                <div class="panel-heading"><span style="font-weight:bold">Назва:</span><span><%= cto.name %></span>
+                  <div>Photo placeholder</div>
+                </div>
+                <div class="panel-body"><span style="font-weight:bold">Опис:</span>
+                  <div><%= cto.description %></div>
+                  <div style="font-weight:bold">Адреса:</span><span><%= cto.address %></div>
+                  <div style="font-weight:bold">Контакти:</div>
 
-                <div><%= cto.description %></div>
-                <span style="font-weight:bold">Адреса:</span><span><%= cto.address %></span>
-                <span style="font-weight:bold">Контакти:</span><div><%= cto.contacts %></div>
-                <div style="clear:both;width:100%;text-align:center">
+                  <div><%= cto.contacts %></div>
+                  <div style="clear:both;width:100%;text-align:center">
 
-                     <% if can? :read, cto %>
-                      <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Редагувати', edit_cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
-                     <% end %>
-
-                      <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Показати', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
-
-                    <% if can? :destroy, cto %>
-                      <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Видалити', cto_path(cto), class: 'btn btn-default',style: 'font-size:10px', method: :delete, data: {confirm: 'Ви впевнені?'} %></span>
+                    <% if can? :read, cto %>
+                        <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Редагувати', edit_cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
                     <% end %>
 
-                  <% if can? :read, cto %>
-                      <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Продажі', :controller=>'orders',:action => 'index',:cto_id=>cto, class: 'btn btn-default',style: 'font-size:10px' %></span>
-                  <% end %>
-                    </div>
+                    <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Показати', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
+
+                    <% if can? :destroy, cto %>
+                        <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Видалити', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px', method: :delete, data: {confirm: 'Ви впевнені?'} %></span>
+                    <% end %>
+
+                    <% if can? :read, cto %>
+                        <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Продажі', :controller => 'orders', :action => 'index', :cto_id => cto, class: 'btn btn-default', style: 'font-size:10px' %></span>
+                    <% end %>
+                  </div>
                 </div>
-            </div>
-           <% end %>
+
+                <div id="map_canvas" style="width:50%; height:50%"></div>
+
+              </div>
+      <% end %>
       </div>
-  <% end %>
-    <%= paginate @ctos %>
+
+      <%= paginate @ctos %>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
   <div id="map_canvas" style="float:right"></div>
 </div>
 <script>
@@ -92,3 +88,8 @@
 
 
 
+<!--<div class="panel panel-default LVSSearchPanel">-->
+  <!--<div class="panel-heading">Пошук Автомобільних сервісів за критеріями</div>-->
+
+  <!--&lt;!&ndash;TODO put car producers into db or separate file &ndash;&gt;-->
+</div>

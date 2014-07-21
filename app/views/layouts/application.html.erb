@@ -8,30 +8,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
-  <style>
-      #map_canvas {
-          width: 500px;
-          height: 400px;
+  <!-- CSS code from Bootply.com editor -->
+
+  <style type="text/css">
+      html,body{
+          height:100%;
+      }
+
+      body{
+          padding-top:50px; /*padding for navbar*/
+      }
+
+
+      #main, #main>.row {
+          height:100%;
+      }
+
+      #left {
+          height:100%;
+          overflow-y:scroll;
+      }
+
+      #map-canvas {
+          width:33.3333%;
+          height:calc(100% - 0);
+          position:absolute;
+          right:0;
+          top:50px;
+          bottom:0;
       }
   </style>
 
-
 </head>
 
+
 <body>
-     <!-- TODO: add logic to generate user and show content that depends on his role -->
-    <p class="navbar-text pull-right">
-      <% if user_signed_in? %>
-          Logged in as <strong><%= current_user.email %></strong>.
-          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-      <% else %>
-          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-      <% end %>
-</br>
+     <div class="navbar navbar-default badge-primary navbar-fixed-top">
+       <div class="navbar-header"><a class="navbar-brand" href="#">Інформаційна база</a>
+         <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </a>
+       </div>
+       <div class="navbar-collapse collapse">
+         <ul class="nav navbar-nav">
+           <li class="active"><a href="#">Home</a></li>
+           <li><a href="#">Link</a></li>
+           <li><a href="#">More</a></li>
+           <li><a href="#">Options</a></li>
+         </ul>
+       </div>
+     </div>
+
+     <div id="map-canvas"></div>
 
 <%= yield %>
+
+
+<script>
+  $(this).showRoutes(false);
+</script>
 
 </body>
 </html>
