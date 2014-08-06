@@ -23,9 +23,7 @@
     <div class="col-xs-8" id="left">
 
       <% @ctos.each do |cto| %>
-
-            <div class="panel panel-info">
-              <div>
+         <div class="panel panel-info">
 
                 <div class="panel-heading"><span style="font-weight:bold">Назва:</span><span><%= cto.name %></span>
                   <div>Photo placeholder</div>
@@ -53,43 +51,43 @@
                     <% end %>
                   </div>
                 </div>
-
-                <div id="map_canvas" style="width:50%; height:50%"></div>
-
-              </div>
+              <div>
+           </div>
+         </div>
       <% end %>
-      </div>
+
 
       <%= paginate @ctos %>
 
     </div>
   </div>
 </div>
+
+
+ <input type="button" value="Show" onclick="$(this).showRoutes(false);"/>
+
+ <!-- Example of  production configuring of separate location-->
+
+<div style="visibility:hidden;width:1px;height:1px">
+ <gmap data="location"  >
+        <mapitem data="origin">true</mapitem>
+        <mapitem data="address">Івано-Франківськ, Сахарова, 23</mapitem>
+        <mapitem data="title">Title1</mapitem>
+        <mapitem data="description">This can be sample description</mapitem>
+        <mapitem data="lat"> 41.8632355</mapitem>
+        <mapitem data="lng">-88.8491994</mapitem>
+    </gmap>
+
+ <gmap data="location"  style="visibility:hidden">
+        <mapitem data="address">Івано-Франківськ, Вулиця Симона Петлюри, 9а</mapitem>
+        <mapitem data="title">Title2</mapitem>
+        <mapitem data="description">It's a sample description</mapitem>
+        <mapitem data="lat"> 28.231636</mapitem>
+        <mapitem data="lng">-82.6990557</mapitem>
+  </gmap>
 </div>
-
-
-  <div id="map_canvas" style="float:right"></div>
-</div>
-<script>
-    function initialize() {
-        var map_canvas = document.getElementById('map_canvas');
-        var map_options = {
-            center: new google.maps.LatLng(44.5403, -78.5463),
-            zoom: 8,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-
-
-        }
-        var map = new google.maps.Map(map_canvas, map_options)
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-</script>
-
-
-
-<!--<div class="panel panel-default LVSSearchPanel">-->
+ <!--<div class="panel panel-default LVSSearchPanel">-->
   <!--<div class="panel-heading">Пошук Автомобільних сервісів за критеріями</div>-->
 
-  <!--&lt;!&ndash;TODO put car producers into db or separate file &ndash;&gt;-->
-</div>
+
+ <div id="map_canvas" style="width:50%; height:50%">mt</div>

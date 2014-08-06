@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>CTO</title>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
   <!-- CSS code from Bootply.com editor -->
 
@@ -61,14 +61,8 @@
        </div>
      </div>
 
-     <div id="map-canvas"></div>
-
 <%= yield %>
 
-
-<script>
-  $(this).showRoutes(false);
-</script>
 
 </body>
 </html>

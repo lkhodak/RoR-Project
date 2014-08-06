@@ -5,14 +5,11 @@
     var geocoder;
     var map;
     var recordCount=0;
-
-
     var originKey='';
     var currentUserPoint='';
     var bounds = new google.maps.LatLngBounds();
     var isCachedGeocoding = false;
     var destinationsMap = {};
-
 
     function populateInternalData(){
         var addresses=[];
@@ -177,10 +174,12 @@
         avgLng = avgLng / inputDataHash.length;
 
         // center of the map (compute the mean value between the two locations)
+
         return new google.maps.LatLng(avgLat, avgLng);
     }
 
     function visualizeMap(inputDataHash) {
+
 
         latlng = getMapCenter(inputDataHash);
 
@@ -201,7 +200,6 @@
         // set the div id where it will be shown
         // set the map options
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
         // generate routes between map points
         directionsService = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer(
@@ -212,6 +210,7 @@
         directionsDisplay.setMap(map);
         distance = '';
         var index = 0;
+
 
         for (var key in inputDataHash) {
             (function (key, index) {
