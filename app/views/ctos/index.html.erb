@@ -1,12 +1,44 @@
- <span class="LVSCarTypes">
+<script type="text/javascript">
+    function MapData (addresses,titles,descriptions, lats,lngs){
+        this.addresses = addresses;
+        this.titles = titles;
+        this.descriptions = descriptions;
+        this.lats = lats;
+        this.lngs = lngs;
+    }
+    var addresses = [];
+    var titles = [];
+    var descriptions = [];
+    var lats = [];
+    var lngs = [];
+
+
+
+    <% @ctos.each do |cto| %>
+        addresses.push("<%=cto.address%>");
+        titles.push("<%=cto.name%>");
+        titles.push("<%=cto.description%>");
+        lats.push("<%=cto.latitude%>");
+        lngs.push("<%=cto.longitude%>");
+    <% end %>
+
+
+    mapData = new MapData(addresses, titles, descriptions, lats, lngs);
+    $(this).showRoutes(false,mapData);
+
+</script>
+
+
+<!--Form should perform a search according to distance and schedule.Let it be until schedule will not be implemented. -->
+<span class="LVSCarTypes">
     <%= search_form_for @search do |f| %>
         <span>
-          <%= f.label :description_cont, "Марка автомобіля" %>
+          <%= f.label :description_cont, "Дата запису" %>
           <%= f.text_field :description_cont %>
         </span>
 
         <span>
-          <%= f.label :services_description_cont, "Послуга" %>
+          <%= f.label :services_description_cont, "Орієнтовна година запису" %>
           <%= f.text_field :services_description_cont %>
         </span>
 
@@ -20,7 +52,7 @@
 
 <div class="container-fluid" id="main">
   <div class="row">
-    <div class="col-xs-8" id="left">
+    <div class="col-xs-6" id="left">
 
       <% @ctos.each do |cto| %>
          <div class="panel panel-info">
@@ -56,38 +88,14 @@
          </div>
       <% end %>
 
-
       <%= paginate @ctos %>
 
+    </div>
+    <div>
+      <div id="map_canvas" style="width:850px;height:600px"></div>
     </div>
   </div>
 </div>
 
 
- <input type="button" value="Show" onclick="$(this).showRoutes(false);"/>
 
- <!-- Example of  production configuring of separate location-->
-
-<div style="visibility:hidden;width:1px;height:1px">
- <gmap data="location"  >
-        <mapitem data="origin">true</mapitem>
-        <mapitem data="address">Івано-Франківськ, Сахарова, 23</mapitem>
-        <mapitem data="title">Title1</mapitem>
-        <mapitem data="description">This can be sample description</mapitem>
-        <mapitem data="lat"> 41.8632355</mapitem>
-        <mapitem data="lng">-88.8491994</mapitem>
-    </gmap>
-
- <gmap data="location"  style="visibility:hidden">
-        <mapitem data="address">Івано-Франківськ, Вулиця Симона Петлюри, 9а</mapitem>
-        <mapitem data="title">Title2</mapitem>
-        <mapitem data="description">It's a sample description</mapitem>
-        <mapitem data="lat"> 28.231636</mapitem>
-        <mapitem data="lng">-82.6990557</mapitem>
-  </gmap>
-</div>
- <!--<div class="panel panel-default LVSSearchPanel">-->
-  <!--<div class="panel-heading">Пошук Автомобільних сервісів за критеріями</div>-->
-
-
- <div id="map_canvas" style="width:50%; height:50%">mt</div>

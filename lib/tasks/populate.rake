@@ -45,7 +45,10 @@ namespace :db do
     Cto.populate listDb.keys.length do |cto|
        cto.name=listDb[i]['name'].force_encoding("utf-8")
        cto.description=listDb[i]['description'].force_encoding("utf-8")
-       #cto.address=listDb[i]['address'].force_encoding("utf-8")
+       cto.address=listDb[i]['address'].force_encoding("utf-8")
+       # if cto.address.length < 1
+       #   cto.address= Faker::Address.street_address
+       # end
        cto.address= Faker::Address.street_address
 
        cto.contacts=listDb[i]['business_phone'].force_encoding("utf-8")

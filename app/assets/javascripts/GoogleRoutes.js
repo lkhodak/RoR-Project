@@ -10,7 +10,9 @@
     var bounds = new google.maps.LatLngBounds();
     var isCachedGeocoding = false;
     var destinationsMap = {};
+    var inputDataHash={};
 
+    //TODO: Let's refactor internal data by passing data via javascript
     function populateInternalData(){
         var addresses=[];
         var titles=[];
@@ -18,7 +20,6 @@
         var lats=[];
         var lngs=[];
         inputDataHash={};
-
 
         $(this.window.document).find('*[data=location]').each(function(key, value) {
             //We are inside.Let's search for inner elements and add them to array
@@ -67,10 +68,31 @@
         }
     }
 
-    $.fn.showRoutes = function(cashedGeocoding) {
+    $.fn.showRoutes = function(cashedGeocoding, data) {
 
         //Let's build the addresses and geocode them if necessary
-        populateInternalData();
+        //populateInternalData();
+
+
+       //Populate internal module variables with data
+        var addresses = data.addresses;
+        var titles = data.titles;
+        var descriptions = data.descriptions;
+        var lats = data.lats;
+        var lngs = data.lngs;
+        recordCount = addresses.length;
+        //Create external hash of data
+        for (var i = 0; i < addresses.length; i++) {
+            if (lats.length == 0 || lngs.length == 0) {
+                inputDataHash[addresses[i]] = [titles[i], descriptions[i]];
+            }
+            else {
+                inputDataHash[addresses[i]] = [titles[i], descriptions[i], lats[i], lngs[i]];
+                isCachedGeocoding=true;
+            }
+        }
+        //First item of array is a origin address
+        originKey=addresses[0];
 
         geocoder = new google.maps.Geocoder();
 
@@ -327,18 +349,18 @@
     }
 
     //Get shortest distance and returns hash
-    $.fn.calculateShortestDistanceLocationName = function(inputDataHash) {
+    $.fn.calculateShortestDistanceLocationName = function (inputDataHash) {
         var minDistance = 0;
         var minDestinationName = '';
 
         //Let's iterate over ready points
         for (var k in inputDataHash) {
-            var distance =getRouteDistance(inputDataHash[k][5].routes[0]);
+            var distance = getRouteDistance(inputDataHash[k][5].routes[0]);
             if (minDistance == 0 || minDistance > 0 && distance < minDistance) {
                 minDistance = distance;
                 minDestinationName = k;
             }
         }
-        return {'location':minDestinationName,'distance':minDistance};
+        return {'location': minDestinationName, 'distance': minDistance};
     }
 }(jQuery));

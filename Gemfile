@@ -59,6 +59,9 @@ gem "ransack"
 
 gem "geocoder"
 
+# Plugin used for rails admin
+gem 'rails_admin', '~> 0.6.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
