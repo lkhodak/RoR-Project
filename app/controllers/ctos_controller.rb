@@ -4,9 +4,7 @@ class CtosController < ApplicationController
 
   #Create new CTO based on form parameters 1
   def create
-    @cto=Cto.new(cto_params)
-    @cto.save
-    redirect_to ctos_path
+    redirect_to ctos_path :requestDate=>params[:requestDate],:requestTime=>params[:requestTime], :page=>params[:page]
   end
 
   
@@ -15,14 +13,17 @@ class CtosController < ApplicationController
     @cto = Cto.find(params[:id])
   end
 
-
-  #Show all available CTO
+   #Show all available CTO
   def index
-    @search = Cto.search(params[:q])
-    @ctos=@search.result.page params[:page]
-    #@ctos = Cto.all.page params[:page]
-    @carBrends=getModelList
-    @carServices=getServicesList
+         #Let's suggest that we cto has one service type
+    if params[:requestDate].to_s.empty? || params[:requestTime].to_s.empty?
+      @ctos = Cto.all.page params[:page]
+
+    else
+      myDate=params[:requestDate].to_s+ ' ' + params[:requestTime].to_s+':00'
+      scheduleRequestDate = DateTime.strptime(myDate, '%d-%m-%Y %H:%M:%S')
+      @ctos = Cto.joins(:schedules).where("start>=? OR end>=?", scheduleRequestDate, scheduleRequestDate).page params[:page]
+    end
   end
 
   #Load object to put CTO data to edit
@@ -54,29 +55,4 @@ class CtosController < ApplicationController
   def cto_params
     params.require(:cto).permit(:name, :description, :address, :contacts,:schedule)
   end
-
-  #TODO should be refactored to got the data from dfb or international file
-  def getModelList
-    @ModelArray= Array.new
-    @ModelArray.append("Audi")
-    @ModelArray.append("BMW")
-    @ModelArray.append("Shevrolet")
-    @ModelArray.append("Toyota")
-    @ModelArray.append("Nissan")
-    @ModelArray.append("Honda")
-    #generate mockup model
-    return  @ModelArray
-  end
-
-  def getServicesList
-    @ServicesArray= Array.new
-    @ServicesArray.append("Fix engine")
-    @ServicesArray.append("Change wheels")
-    @ServicesArray.append("Fix electricity")
-    @ServicesArray.append("change color")
-    @ServicesArray.append("Wash car")
-      #generate mockup model
-    return  @ServicesArray
-  end
-
 end

@@ -12,8 +12,6 @@
     var lats = [];
     var lngs = [];
 
-
-
     <% @ctos.each do |cto| %>
         addresses.push("<%=cto.address%>");
         titles.push("<%=cto.name%>");
@@ -23,77 +21,59 @@
     <% end %>
 
 
-    mapData = new MapData(addresses, titles, descriptions, lats, lngs);
+     mapData = new MapData(addresses, titles, descriptions, lats, lngs);
     $(this).showRoutes(false,mapData);
-
 </script>
 
 
-<!--Form should perform a search according to distance and schedule.Let it be until schedule will not be implemented. -->
+<!--Form should perform a search according to distance and schedule.Let it be until schedule will not be implemented.TODO refactor search -->
 <span class="LVSCarTypes">
-    <%= search_form_for @search do |f| %>
+
+   <!--Let's build custom search form -->
+  <%= form_tag :controller => 'ctos', :action => 'index', :method => 'get' do |f|%>
         <span>
-          <%= f.label :description_cont, "Дата запису" %>
-          <%= f.text_field :description_cont %>
+          <%= label_tag(:requestDate, "Дата запису") %>
+          <%= text_field_tag(:requestDate)%>
+         </span>
+
+        <span>
+          <%= label_tag(:requestTime, "Дата запису") %>
+          <%= text_field_tag(:requestTime)%>
         </span>
 
         <span>
-          <%= f.label :services_description_cont, "Орієнтовна година запису" %>
-          <%= f.text_field :services_description_cont %>
+          <!-- If registered then we can enter it's location. Otherwise let's get gps to get into account search resutls. TODO: Let's make optional our location to build map to get -->
+          Моє місцезнаходження: <input type="text" name="user location">
         </span>
-
-        <span>
-          <!-- If registered then we can enter it's location. Otherwise let's get gps to get into account search resutls. TODO. We need to return to client search results and then javascript will sort them by location -->
-          userlocation: <input type="text" name="user location">
-        </span>
-       <span class="btn btn-default LVSSearchButton"><%=f.submit "Пошук" %></span>
+       <span class="btn btn-default LVSSearchButton"><%= submit_tag("Search") %></span>
     <% end %>
   </span>
 
-<div class="container-fluid" id="main">
+<div class="container" id="main">
   <div class="row">
     <div class="col-xs-6" id="left">
 
       <% @ctos.each do |cto| %>
          <div class="panel panel-info">
-
-                <div class="panel-heading"><span style="font-weight:bold">Назва:</span><span><%= cto.name %></span>
-                  <div>Photo placeholder</div>
-                </div>
-                <div class="panel-body"><span style="font-weight:bold">Опис:</span>
-                  <div><%= cto.description %></div>
+                <div class="panel-heading"><span style="font-weight:bold">Назва:</span><span><%= cto.name %></span></div>
+                <div class="panel-body"><span style="font-weight:bold">Опис:</span><div><%= cto.description %></div>
                   <div style="font-weight:bold">Адреса:</span><span><%= cto.address %></div>
-                  <div style="font-weight:bold">Контакти:</div>
-
-                  <div><%= cto.contacts %></div>
-                  <div style="clear:both;width:100%;text-align:center">
-
-                    <% if can? :read, cto %>
-                        <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Редагувати', edit_cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
-                    <% end %>
-
-                    <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Показати', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
-
-                    <% if can? :destroy, cto %>
-                        <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Видалити', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px', method: :delete, data: {confirm: 'Ви впевнені?'} %></span>
-                    <% end %>
-
-                    <% if can? :read, cto %>
-                        <span style="margin-right:1px;width:32%;font-size:10px"><%= link_to 'Продажі', :controller => 'orders', :action => 'index', :cto_id => cto, class: 'btn btn-default', style: 'font-size:10px' %></span>
-                    <% end %>
+                  <div style="font-weight:bold">Контакти:</div><div><%= cto.contacts %></div>
+                  <div style="clear:both;width:100%;text-align:right">
+                    <span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Переглянути розклад', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
                   </div>
                 </div>
-              <div>
-           </div>
-         </div>
-      <% end %>
+         <div>
+     </div>
+  </div>
+  <% end %>
 
       <%= paginate @ctos %>
+</div>
 
-    </div>
-    <div>
-      <div id="map_canvas" style="width:850px;height:600px"></div>
-    </div>
+</div>
+  <div id="route_map" style="display:block;position:absolute">
+    <div id="map_canvas" style="width:400px;height:400px"></div>
   </div>
 </div>
 

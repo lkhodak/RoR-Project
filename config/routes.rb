@@ -15,5 +15,5 @@ CTO::Application.routes.draw do
     end
     resources :schedules
   end
-   root 'ctos#index'
- end
+  root 'ctos#index'
+end
