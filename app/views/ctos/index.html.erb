@@ -22,15 +22,17 @@
 
 
      mapData = new MapData(addresses, titles, descriptions, lats, lngs);
-    $(this).showRoutes(false,mapData);
+    //$(this).showRoutes(false,mapData);
 </script>
 
 
 <!--Form should perform a search according to distance and schedule.Let it be until schedule will not be implemented.TODO refactor search -->
-<span class="LVSCarTypes">
 
    <!--Let's build custom search form -->
-  <%= form_tag :controller => 'ctos', :action => 'index', :method => 'get' do |f|%>
+<div style="padding:5px">
+  <%= form_tag({:controller=>'ctos', :action=>'index',:method=> 'get'},{:class =>'navbar-form navbar-left',:role => 'search'}) do%>
+    <div class="form-group">
+
         <span>
           <%= label_tag(:requestDate, "Дата запису") %>
           <%= text_field_tag(:requestDate)%>
@@ -38,44 +40,48 @@
 
         <span>
           <%= label_tag(:requestTime, "Дата запису") %>
-          <%= text_field_tag(:requestTime)%>
+          <!--Let's iterate over time to create time options -->
+          <%= select_tag(:requestTime, options_for_select(@timeStorage)) %>
         </span>
 
-        <span>
-          <!-- If registered then we can enter it's location. Otherwise let's get gps to get into account search resutls. TODO: Let's make optional our location to build map to get -->
-          Моє місцезнаходження: <input type="text" name="user location">
-        </span>
-       <span class="btn btn-default LVSSearchButton"><%= submit_tag("Search") %></span>
+      </div>
+       <span><%= submit_tag("Search", :class=>"btn btn-default") %></span>
     <% end %>
-  </span>
+</div>
 
-<div class="container" id="main">
-  <div class="row">
-    <div class="col-xs-6" id="left">
 
-      <% @ctos.each do |cto| %>
-         <div class="panel panel-info">
-                <div class="panel-heading"><span style="font-weight:bold">Назва:</span><span><%= cto.name %></span></div>
-                <div class="panel-body"><span style="font-weight:bold">Опис:</span><div><%= cto.description %></div>
+<div class="container" id="main" style="float:left">
+    <% @ctos.each_slice(3) do |ctoChunk|%>
+         <div class="row" style="margin:0px;height:200px">
+             <% ctoChunk.each do |cto| %>
+              <div class="col-md-4">
+                <div class="panel-info"><span style="font-weight:bold">Назва:</span><span><%= cto.name %></span></div>
+                <div class="panel-body"><span style="font-weight:bold">Опис:</span><div><%= cto.description.truncate(50) %></div>
                   <div style="font-weight:bold">Адреса:</span><span><%= cto.address %></div>
                   <div style="font-weight:bold">Контакти:</div><div><%= cto.contacts %></div>
                   <div style="clear:both;width:100%;text-align:right">
                     <span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Переглянути розклад', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
                   </div>
                 </div>
-         <div>
-     </div>
-  </div>
-  <% end %>
+         </div>
+             <% end %>
 
-      <%= paginate @ctos %>
+         </div>
+      <hr>
+     <% end %>
+  <%= paginate @ctos %>
 </div>
 
-</div>
+
+
+
   <div id="route_map" style="display:block;position:absolute">
     <div id="map_canvas" style="width:400px;height:400px"></div>
   </div>
-</div>
 
+<script type="text/javascript">
+    $("#requestDate" ).datepicker();
+    $("#requestDate" ).datepicker( "option", "dateFormat","dd-mm-yy" );
+</script>
 
 

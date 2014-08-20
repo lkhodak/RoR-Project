@@ -9,7 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require_tree .
- *= require bootstrap.min
+ *= require bootstrap.css
+ *= require jquery.ui.all
  */
 
 .LVSSearchFormHeader {font-size:14px;font-weight: bold;margin-left:2px}

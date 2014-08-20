@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //=require jquery
+//= require jquery.ui.all
+//= require jquery.ui.datepicker-uk.js
 //=require bootstrap.js
 //=require GoogleRoutes.js
 

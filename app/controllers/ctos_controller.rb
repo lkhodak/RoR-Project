@@ -24,6 +24,17 @@ class CtosController < ApplicationController
       scheduleRequestDate = DateTime.strptime(myDate, '%d-%m-%Y %H:%M:%S')
       @ctos = Cto.joins(:schedules).where("start>=? OR end>=?", scheduleRequestDate, scheduleRequestDate).page params[:page]
     end
+
+
+   # create time structure. array of array
+    @timeStorage=[]
+   (1..23).each do |time|
+    @timeStorage.push([time.to_s + ":00", time.to_s + ":00"])
+   end
+
+
+    #TODO.Create an ability to preselect the option
+
   end
 
   #Load object to put CTO data to edit
