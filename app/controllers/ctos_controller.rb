@@ -27,14 +27,28 @@ class CtosController < ApplicationController
 
 
    # create time structure. array of array
+    setAllowedTime
+
+    #Let's set params for request date
+    setSearchDate
+  end
+
+ # set paramerer time and store it between search
+  def setAllowedTime
     @timeStorage=[]
-   (1..23).each do |time|
-    @timeStorage.push([time.to_s + ":00", time.to_s + ":00"])
-   end
+    (1..23).each do |time|
+      @timeStorage.push([time.to_s + ":00", time.to_s + ":00"])
+    end
+    @selectedTime = params[:requestTime].to_s
+  end
 
+  # set paramerer date and store it between search
+  def setSearchDate
+    @searchDate = params[:requestDate];
 
-    #TODO.Create an ability to preselect the option
-
+    if @searchDate.to_s.empty?
+      @searchDate=Time.now.strftime("%d-%m-%Y");
+    end
   end
 
   #Load object to put CTO data to edit
