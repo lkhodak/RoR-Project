@@ -1,0 +1,31 @@
+<h1>Замовити нову послугу</h1>
+<p>Find me in app/views/orders/new.html.erb</p>
+
+
+<%= form_for [@cto,@order] do |ord| %>
+    <p>
+      <%= ord.label :'Дата виконання послуги' %><br>
+      <%= ord.datetime_select :plannedDate %>
+    </p>
+
+    <p>
+      <%= ord.label :'Почтова адреса' %><br>
+      <%= ord.text_field :carNumber %>
+    </p>
+
+    <p>
+      <%= label_tag(:selectedService, "Послуга") %>
+      <%= select_tag(:selectedService, options_for_select(@services.map{|s| [s.description,s.id]}, @selectedService)) %>
+    </p>
+
+    <p>
+        <h3>Доступний час</h3>
+        <%= select_tag(:selectedTime, options_for_select(@events.map{|s| [s.start,s.start]}, @selectedTime)) %>
+    </p>
+
+    <p>
+      <%= ord.submit 'Замовити', :class => 'btn btn-lg btn-success' %>
+    </p>
+<% end %>
+
+

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reviewText: MyString
+  mark: 1
+  user_id: 
+  service_id: 
+  cto_id: 
+
+two:
+  reviewText: MyString
+  mark: 1
+  user_id: 
+  service_id: 
+  cto_id: 

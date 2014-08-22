@@ -64,7 +64,7 @@
                   <div style="font-weight:bold">Контакти:<%= cto.contacts %></div>
                 </div>
                 <div style="clear:both;width:100%;text-align:right" class="panel-footer">
-                  <span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Записатися', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span><span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Про компанію', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
+                  <span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Записатися', new_cto_order_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span><span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Про компанію', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
                 </div>
                 </div>
               <% end %>
@@ -82,5 +82,4 @@
     $("#requestDate" ).datepicker();
     $("#requestDate" ).datepicker( "option", "dateFormat","dd-mm-yy" );
     $("#requestDate" ).datepicker('setDate', '<%=@searchDate%>');
-
 </script>

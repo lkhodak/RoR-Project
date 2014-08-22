@@ -10,9 +10,8 @@ CTO::Application.routes.draw do
   devise_for :users
   get "services/create"
   resources :ctos do
-    resources :services do
-      resources :orders
-    end
+    resources :services
+    resources :orders
     resources :schedules
   end
   root 'ctos#index'
