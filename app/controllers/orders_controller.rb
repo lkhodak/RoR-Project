@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     #need to add info about checking the calendar and providing acceptable date range to fill
     @schedules=Schedule.where('schedules.date=? AND cto_id=?',Date.current ,params[:cto_id])
 
-    #Need to calcualte
+    #Need to calcualte. We need to make a reverse about schedule making a suggestion according to current time on server.
     @events = []
     @schedules.each do |schedule|
       @events.push(Event.new(schedule.date, schedule.start, schedule.end))
@@ -21,17 +21,18 @@ class OrdersController < ApplicationController
   def create
     # TODO let's add logic to create an order with appropriate params.Save order and redirect to main cto page
     @cto=Cto.find (params[:cto_id])
-    @service = Service.find(params[:service_id])
+    @service = Service.find(params[:selectedService])
+
     @order = Order.new
 
-    #set order model parameters.Objects are stored as hashes.
-    @order.carNumber=params[:order][:carNumber]
+    #set order model parameters.Objects are stored as hashes.We don't need to have cae number
+    #@order.carNumber=params[:order][:carNumber]
     @order.plannedDate=params[:order][:plannedDate]
     @order.status='New'
     @order.requestDate=Date.current
     @order.user=current_user
 
-    #TODO: Implement separate page to show secure random info for the user.Thank you page.
+   # TODO: Admin should update the page and order changes should be reflected in base schedules according to new orders. Or special service should be executed during approval
 
     @order.uniqueCode=SecureRandom.hex(10)
     @order.save

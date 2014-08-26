@@ -8,12 +8,7 @@
       <%= ord.datetime_select :plannedDate %>
     </p>
 
-    <p>
-      <%= ord.label :'Почтова адреса' %><br>
-      <%= ord.text_field :carNumber %>
-    </p>
-
-    <p>
+     <p>
       <%= label_tag(:selectedService, "Послуга") %>
       <%= select_tag(:selectedService, options_for_select(@services.map{|s| [s.description,s.id]}, @selectedService)) %>
     </p>
