@@ -13,18 +13,15 @@
   <%= @cto.address %>
 </p>
 
-
 <p>
   <strong>Контакти:</strong>
   <%= @cto.contacts %>
 </p>
 
-
 <p>
   <strong>Розклад роботи:</strong>
   <%= @cto.schedule %>
 </p>
-
 
 <h2>Послуги які пропонує сервіс</h2>
 
@@ -41,28 +38,12 @@
       <tr>
         <td><%= service.description %></td>
         <td><%= service.price %></td>
-        <td><%= link_to 'Замовити послугу', new_cto_service_order_path(@cto.id, service.id) %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
-<h2>Додати нову послугу (тільки для користувачів рівня адміністратора):</h2>
-<%= form_for([@cto, @cto.services.build]) do |f| %>
-    <p>
-      <%= f.label :Description %><br>
-      <%= f.text_field :description %>
-    </p>
-    <p>
-      <%= f.label :Price %><br>
-      <%= f.text_field :price %>
-    </p>
-    <p>
-      <%= f.submit %>
-    </p>
-<% end %>
-
-<h2>Відгуки про дану сто (todo: add other fields and styling)</h2>
+<h2>Відгуки про дану сто</h2>
 <% @cto.services.each do |service| %>
     <hr>
     <p>Evaluated service:<%= service.description %></p>
@@ -78,5 +59,4 @@
     <% end %>
 <% end %>
 
-<%= link_to 'Редагувати дані компанії', edit_cto_path(@cto) %> |
 <%= link_to 'На головну', ctos_path %>

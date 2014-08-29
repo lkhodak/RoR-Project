@@ -31,13 +31,20 @@ class OrdersController < ApplicationController
     @order.status='New'
     @order.requestDate=Date.current
     @order.user=current_user
-
-   # TODO: Admin should update the page and order changes should be reflected in base schedules according to new orders. Or special service should be executed during approval
+    @order.service=@service
 
     @order.uniqueCode=SecureRandom.hex(10)
     @order.save
-    redirect_to cto_path (@cto)
+
+    #Show user his uniqueid and add appropriate params
+    redirect_to cto_order_path :cto_id=>@cto.id,:id=>@order.id, :order => @order
   end
+
+  #Let's show the unique number
+  def show
+    @order=Order.find(params[:id]);
+  end
+
 
   def update
     #TODO: Add update functionality
@@ -58,5 +65,3 @@ class Event
     @end=endTime
   end
 end
-
-

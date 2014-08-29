@@ -9,10 +9,14 @@ CTO::Application.routes.draw do
   get "orders/index"
   devise_for :users
   get "services/create"
-  resources :ctos do
-    resources :services
-    resources :orders
-    resources :schedules
+
+  scope '(:locale)' do
+    resources :ctos do
+      resources :services
+      resources :orders
+      resources :schedules
+    end
   end
+
   root 'ctos#index'
 end

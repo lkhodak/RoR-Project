@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  ctos:
+      index:
+      contacts: Contacts
+      address: Address
+      bookLinkText: Book
+      aboutCompanyLinkText: About company

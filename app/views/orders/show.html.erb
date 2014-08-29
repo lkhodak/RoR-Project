@@ -1,2 +1,9 @@
-<h1> Review the orders status for cto</h1>
 
+<div style="text-align: center">
+<h1> Дякуємо за замовлення</h1>
+</div>
+
+<p>Ваш промокод для пред'явлення на мийці <%= @order.uniqueCode %></p>
+<p>На вашу почтову адресу буде вислане повідомлення про підтвердження/або відхилення замовлення протягом 5-10 хвилин</p>
+<p>Слід додати сюди ще інформацію про мийку, користувача який замовив послугу та кнопку повернення</p>
+<span style="text-align:right"><%= link_to 'На головну', ctos_path, class: 'btn btn-default', style: 'font-size:10px' %></span>
