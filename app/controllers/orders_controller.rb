@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
     # we need to get all services to evaluate and add them to the dropdown
     @services =@cto.services;
 
-    #need to add info about checking the calendar and providing acceptable date range to fill
+    #need to add info about checking the calendar and providing acceptable date range to fill.TODO: In perspective we need to create cache of predefined data and update it when order is approved.
     @schedules=Schedule.where('schedules.date=? AND cto_id=?',Date.current ,params[:cto_id])
 
     #Need to calcualte. We need to make a reverse about schedule making a suggestion according to current time on server.
@@ -15,6 +15,8 @@ class OrdersController < ApplicationController
     @schedules.each do |schedule|
       @events.push(Event.new(schedule.date, schedule.start, schedule.end))
     end
+
+    #TODO: Let's restrict date selection for 2-3 days forward.User should be able to select only those dates
     @order = Order.new
   end
 

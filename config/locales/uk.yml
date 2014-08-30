@@ -2,7 +2,24 @@ uk:
 
    ctos:
       index:
-        contacts: Контакти
-        address: Адреса
+        contacts: "Контакти: %{contacts}"
+        address: "Адреса: %{address}"
         bookLinkText: Записатися
         aboutCompanyLinkText: Про компанію
+
+   date:
+         order:
+               - :day
+               - :month
+               - :year
+         plannedDate: Дата замовлення
+   helpers:
+     label:
+       order:
+         plannedDate: Дата замовлення
+         selectedService: Виберіть послугу
+         selectedTime: Виберіть зручний для вас час
+
+     submit:
+        order:
+         create: "Замовити"

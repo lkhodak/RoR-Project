@@ -1,25 +1,26 @@
-<h1>Замовити нову послугу</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
-
+<h1>Замовити нову послугу. Вибір дати може здійснюватися тільки за наявності вільного часу. Це означає що варто створити можель де можна буде вибрати вільний час</h1>
 
 <%= form_for [@cto,@order] do |ord| %>
+
     <p>
-      <%= ord.label :'Дата виконання послуги' %><br>
+      <%= ord.label :plannedDate %><br>
+
       <%= ord.datetime_select :plannedDate %>
     </p>
 
-     <p>
-      <%= label_tag(:selectedService, "Послуга") %>
-      <%= select_tag(:selectedService, options_for_select(@services.map{|s| [s.description,s.id]}, @selectedService)) %>
+    <p>
+
+      <%= ord.label :selectedService %><br>
+      <%= ord.select(:service, options_for_select(@services.map{|s| [s.description,s.id]}, @selectedService)) %>
     </p>
 
     <p>
-        <h3>Доступний час</h3>
+       <%= label_tag(:selectedTime) %><br>
         <%= select_tag(:selectedTime, options_for_select(@events.map{|s| [s.start,s.start]}, @selectedTime)) %>
     </p>
 
     <p>
-      <%= ord.submit 'Замовити', :class => 'btn btn-lg btn-success' %>
+      <%= ord.submit :class => 'btn btn-lg btn-success' %>
     </p>
 <% end %>
 
