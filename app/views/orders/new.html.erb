@@ -3,14 +3,14 @@
 <%= form_for [@cto,@order] do |ord| %>
 
     <p>
-      <%= ord.label :plannedDate %><br>
+      <%=ord.label (:plannedDate) %>
+      <%=ord.text_field :plannedDate %>
 
-      <%= ord.datetime_select :plannedDate %>
     </p>
 
     <p>
 
-      <%= ord.label :selectedService %><br>
+      <%= ord.label (:selectedService) %><br>
       <%= ord.select(:service, options_for_select(@services.map{|s| [s.description,s.id]}, @selectedService)) %>
     </p>
 
@@ -24,4 +24,8 @@
     </p>
 <% end %>
 
-
+<script type="text/javascript">
+    $("#order_plannedDate" ).datepicker();
+    $("#order_plannedDate" ).datepicker( "option", "dateFormat","dd-mm-yy" );
+    $("#order_plannedDate" ).datepicker('setDate', '<%=@plannedDate%>');
+</script>

@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
 
     #TODO: Let's restrict date selection for 2-3 days forward.User should be able to select only those dates
     @order = Order.new
+    @order.plannedDate=Date.current
   end
 
   def create
@@ -29,7 +30,8 @@ class OrdersController < ApplicationController
 
     #set order model parameters.Objects are stored as hashes.We don't need to have cae number
     #@order.carNumber=params[:order][:carNumber]
-    @order.plannedDate=params[:order][:plannedDate]
+    @order.plannedDate=params[:order][:plannedDate] || Date.current
+
     @order.status='New'
     @order.requestDate=Date.current
     @order.user=current_user
