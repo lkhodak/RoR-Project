@@ -19,6 +19,12 @@
       <jdbc-url>jdbc:sqlite:D:\Users\lkhodak\Documents\Aptana Studio 3 Workspace\AvtoSite\db\production.sqlite3</jdbc-url>
       <libraries />
     </data-source>
+    <data-source source="LOCAL" name="Rails test3: development" uuid="44f8b7bd-a476-4501-add1-b8c5cb5412eb">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\lkhodak\RubymineProjects\test3\db\development.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
   </component>
 </project>
 

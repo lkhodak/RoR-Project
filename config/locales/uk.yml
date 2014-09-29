@@ -1,9 +1,8 @@
 uk:
-
    ctos:
       index:
-        contacts: "Контакти: %{contacts}"
-        address: "Адреса: %{address}"
+        contacts: "<span style='font-weight:bold'>Контакти:</span>: %{contacts}"
+        address: "<span style='font-weight:bold'>Адреса:</span> %{address}"
         bookLinkText: Записатися
         aboutCompanyLinkText: Про компанію
 

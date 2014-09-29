@@ -44,6 +44,11 @@
           <%= select_tag(:requestTime, options_for_select(@timeStorage,@selectedTime)) %>
         </span>
 
+        <span>
+
+
+        </span>
+
       </div>
        <span><%= submit_tag("Search", :class=>"btn btn-default") %></span>
     <% end %>
@@ -57,14 +62,14 @@
     <% @ctos.each_slice(3) do |ctoChunk|%>
          <div class="row" style="margin:30px;height:200px;">
              <% ctoChunk.each do |cto| %>
-              <div class="col-md-4 panel panel-primary" style="padding-left:0px;padding-right: 3px;">
+              <div class="col-md-3 panel panel-primary" style="padding-left:0px;padding-right: 3px;">
                <div class="panel-heading"><h3 class="panel-title"><%= cto.name %></h3></div>
                 <div class="panel-body">
-                  <div style="font-weight:bold"><%=t('.address'+cto.address) %></div>
-                  <div style="font-weight:bold"><%= t('.contacts'+ cto.contacts) %></div>
+                  <div><%=raw t('.address',address:cto.address) %></div>
+                  <div><%= raw t('.contacts', contacts:cto.contacts) %></div>
                 </div>
                 <div style="clear:both;width:100%;text-align:right" class="panel-footer">
-                  <span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Записатися', new_cto_order_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span><span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Про компанію', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
+                  <span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Про компанію', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
                 </div>
                 </div>
               <% end %>
