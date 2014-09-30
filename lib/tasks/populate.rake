@@ -83,7 +83,7 @@ namespace :db do
 
         service.cto_id=cto.id
         service.description=Populator.sentences(2..10)
-        price=Faker::Number.number(3)
+        price=Faker::Number.number(3).to_f
         service.price=price
 
         #Create list of orders and users who order the service

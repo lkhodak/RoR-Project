@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140809194234) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "ctos", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -39,9 +42,9 @@ ActiveRecord::Schema.define(version: 20140809194234) do
     t.string   "uniqueCode"
   end
 
-  add_index "orders", ["service_id"], name: "index_orders_on_service_id"
-  add_index "orders", ["status"], name: "index_orders_on_status"
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+  add_index "orders", ["service_id"], name: "index_orders_on_service_id", using: :btree
+  add_index "orders", ["status"], name: "index_orders_on_status", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "reviews", force: true do |t|
     t.string   "reviewText"
@@ -53,9 +56,9 @@ ActiveRecord::Schema.define(version: 20140809194234) do
     t.datetime "updated_at"
   end
 
-  add_index "reviews", ["cto_id"], name: "index_reviews_on_cto_id"
-  add_index "reviews", ["service_id"], name: "index_reviews_on_service_id"
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
+  add_index "reviews", ["cto_id"], name: "index_reviews_on_cto_id", using: :btree
+  add_index "reviews", ["service_id"], name: "index_reviews_on_service_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "schedules", force: true do |t|
     t.date     "date"
@@ -74,7 +77,7 @@ ActiveRecord::Schema.define(version: 20140809194234) do
     t.integer  "cto_id"
   end
 
-  add_index "services", ["cto_id"], name: "index_services_on_cto_id"
+  add_index "services", ["cto_id"], name: "index_services_on_cto_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
@@ -93,8 +96,8 @@ ActiveRecord::Schema.define(version: 20140809194234) do
     t.integer  "cto_id"
   end
 
-  add_index "users", ["cto_id"], name: "index_users_on_cto_id"
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["cto_id"], name: "index_users_on_cto_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

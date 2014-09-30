@@ -3,20 +3,26 @@
   <component name="DataSourceManagerImpl" format="xml" hash="812705452">
     <data-source source="LOCAL" name="Rails AvtoSite: development" uuid="b966bb7e-be11-4cfa-83d6-9f161e205de3">
       <driver-ref>sqlite.xerial</driver-ref>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\Users\lkhodak\Documents\Aptana Studio 3 Workspace\AvtoSite\db\development.sqlite3</jdbc-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/cto_development</jdbc-url>
+      <user-name>raiden</user-name>
+      <user-password>dfc1dfc2dfc5dfcedfcbdfc1</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails AvtoSite: test" uuid="1fdde2dd-730b-4e42-a02f-6a92903d816f">
       <driver-ref>sqlite.xerial</driver-ref>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\Users\lkhodak\Documents\Aptana Studio 3 Workspace\AvtoSite\db\test.sqlite3</jdbc-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/cto_test</jdbc-url>
+      <user-name>raiden</user-name>
+      <user-password>dfc1dfc2dfc5dfcedfcbdfc1</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails AvtoSite: production" uuid="18323c06-dd66-4544-b2f2-17baff578726">
       <driver-ref>sqlite.xerial</driver-ref>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\Users\lkhodak\Documents\Aptana Studio 3 Workspace\AvtoSite\db\production.sqlite3</jdbc-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/cto_production</jdbc-url>
+      <user-name>raiden</user-name>
+      <user-password>dfc1dfc2dfc5dfcedfcbdfc1</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails test3: development" uuid="44f8b7bd-a476-4501-add1-b8c5cb5412eb">

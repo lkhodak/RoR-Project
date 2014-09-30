@@ -4,7 +4,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
+
+# Use progress as the database for Active Record
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -57,7 +60,7 @@ gem 'kaminari', '~> 0.15.1'
 gem "cancan"
 
 # Ransack plugin is used for easy building of search forms
-gem "ransack"
+#gem "ransack"
 
 gem "geocoder"
 
