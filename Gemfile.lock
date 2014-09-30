@@ -168,7 +168,7 @@ DEPENDENCIES
   populator (~> 1.0.0)
   rails (= 4.0.2)
   rails_admin (~> 0.6.2)
-  sass-rails (~> 4.0.0)
+  sass-rails (~> 4.0.2)
   sdoc
   turbolinks
   uglifier (>= 1.3.0)
