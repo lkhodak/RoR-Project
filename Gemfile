@@ -6,7 +6,7 @@ gem 'rails', '4.0.2'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 
-# Use progress as the database for Active Record
+# Use progress as the database for Active Record1
 gem 'pg'
 
 # Use SCSS for stylesheets
