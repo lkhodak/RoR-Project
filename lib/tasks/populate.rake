@@ -12,7 +12,7 @@ namespace :db do
 
 
     #Load data from list
-    listDb=Marshal.load(File.binread('d:/my_xml_data_file.xml'))
+    listDb=Marshal.load(File.binread(File.join(Rails.root, "lib","my_xml_data_file.xml")));
     puts listDb
 
     #Create list of Cros with related records
