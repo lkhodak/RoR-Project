@@ -19,6 +19,5 @@
 
 .LVSPriceRange > .LVSSearchTreeMenuItem, .LVSRatingRange > .LVSSearchTreeMenuItem,.LVSCarServiceDirections > .LVSSearchTreeMenuItem,.LVSCarTypes > .LVSSearchTreeMenuItem   {margin-left:15px;}
 
-
 .LVSCarServicesRatingFromID {width:10px}
-.LVSSearchButton {margin-top:15px;align: right;float: right;margin-bottom: 5px;margin-right: 3px}
+.LVSSearchButton {margin-top:15px;text-align: right;float: right;margin-bottom: 5px;margin-right: 3px}
