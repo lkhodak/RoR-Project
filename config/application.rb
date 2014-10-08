@@ -24,4 +24,3 @@ module CTO
     config.autoload_paths += Dir["#{config.root}/lib"]
   end
   end
-config.assets.initialize_on_precompile = false

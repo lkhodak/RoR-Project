@@ -13,7 +13,7 @@
 //=require jquery
 //= require jquery.ui.all
 //= require jquery.ui.datepicker-uk.js
-//=require bootstrap.js
+//=require bootstrap
 //= require bootstrap-sprockets
 //=require GoogleRoutes.js
 
