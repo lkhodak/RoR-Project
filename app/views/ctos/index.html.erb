@@ -35,7 +35,7 @@
 
         <span>
           <%= label_tag(:requestDate, "Дата запису") %>
-          <%= text_field_tag(:requestDate,@searchDate)%>
+          <%= text_field_tag(:requestDate,@searchDate, 'data-date-format' => 'DD-MM-YYYY') %>
          </span>
 
         <span>
@@ -84,7 +84,7 @@
   </div>
 
 <script type="text/javascript">
-    $("#requestDate" ).datepicker();
-    $("#requestDate" ).datepicker( "option", "dateFormat","dd-mm-yy" );
-    $("#requestDate" ).datepicker('setDate', '<%=@searchDate%>');
+   $("#requestDate" ).datetimepicker({pickTime: false});
+   //$("#requestDate" ).datepicker( "option", "dateFormat","dd-mm-yy" );
+   //$("#requestDate" ).datepicker('setDate', '<%=@searchDate%>');
 </script>

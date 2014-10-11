@@ -25,6 +25,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -70,6 +71,10 @@ gem 'rails_admin', '~> 0.6.2'
 gem 'bootstrap-sass', '~> 3.2.0'
 
 gem 'autoprefixer-rails'
+
+
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 
 # Use ActiveModel has_secure_password

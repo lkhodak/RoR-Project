@@ -22,7 +22,7 @@ class CtosController < ApplicationController
     else
       myDate=params[:requestDate].to_s+ ' ' + params[:requestTime].to_s+':00'
       scheduleRequestDate = DateTime.strptime(myDate, '%d-%m-%Y %H:%M:%S')
-      @ctos = Cto.joins(:schedules).where("start>=? OR end>=?", scheduleRequestDate, scheduleRequestDate).page params[:page]
+      @ctos = Cto.joins(:schedules).where("schedules.start>=? OR schedules.end>=?", scheduleRequestDate, scheduleRequestDate).page params[:page]
     end
 
 
