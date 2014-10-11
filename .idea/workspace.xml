@@ -1230,7 +1230,11 @@
       <created>1413057592990</created>
       <updated>1413057592990</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Refactored to support datepicker and progress file">
+      <created>1413057635830</created>
+      <updated>1413057635830</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1264,7 +1268,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980143" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32922953" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17871326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17871326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28349945" sideWeight="0.6916933" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45051464" sideWeight="0.25059572" order="7" side_tool="true" content_ui="tabs" />
@@ -1294,7 +1298,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added devise gem and integrated into application.&#10;&#10;&#10;" />
     <MESSAGE value="-Added Order entity and minimal web support to store entity in the database.&#10;&#10;&#10;" />
     <MESSAGE value="-Added column to store random number.&#10;-Refactored services to be shown as table.&#10;&#10;" />
     <MESSAGE value="-Added rake task to populate database with fake data&#10;-Added Populator and Fake gems&#10;-Added kaminary gem and integrated it into main ctos page in test mode&#10;&#10;" />
@@ -1319,7 +1322,8 @@
     <MESSAGE value="fix ui issues." />
     <MESSAGE value="Refactored to support Postgre database." />
     <MESSAGE value="Refactored to support Heroku." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored to support Heroku." />
+    <MESSAGE value="Refactored to support datepicker and progress file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored to support datepicker and progress file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
