@@ -12,7 +12,8 @@
     var destinationsMap = {};
     var inputDataHash={};
 
-    //TODO: Let's refactor internal data by passing data via javascript
+
+       //TODO: Let's refactor internal data by passing data via javascript
     function populateInternalData(){
         var addresses=[];
         var titles=[];
@@ -71,7 +72,7 @@
     $.fn.showRoutes = function(cashedGeocoding, data) {
 
         //Let's build the addresses and geocode them if necessary
-        //populateInternalData();
+        populateInternalData();
 
 
        //Populate internal module variables with data
@@ -204,7 +205,6 @@
 
 
         latlng = getMapCenter(inputDataHash);
-
         // set map options
         // set zoom level
         // set center

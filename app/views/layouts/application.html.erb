@@ -6,7 +6,8 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
   <!-- CSS code from Bootply.com editor -->
 
@@ -17,16 +18,6 @@
 
       body{
           padding-top:50px; /*padding for navbar*/
-      }
-
-
-      #main, #main>.row {
-          height:100%;
-      }
-
-      #left {
-          height:100%;
-
       }
 
   </style>
@@ -49,16 +40,6 @@
     <div class="navbar-collapse collapse">
     </div><!--/.navbar-collapse -->
   </div>
-</div>
-
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-  <div class="container">
-    <h1>Каталог мийок Івано-Франківська</h1>
-    <ul>
-      <li>-Вибери для себе дату і час</li>
-    </ul>
-   </div>
 </div>
 <%= yield %>
 </body>

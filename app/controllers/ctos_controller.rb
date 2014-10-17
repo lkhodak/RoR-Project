@@ -4,7 +4,7 @@ class CtosController < ApplicationController
 
   #Create new CTO based on form parameters 1
   def create
-    redirect_to ctos_path :requestDate=>params[:requestDate],:requestTime=>params[:requestTime], :page=>params[:page]
+    redirect_to ctos_path :myLocation=>params[:myLocation],:radius=>params[:radius], :page=>params[:page]
   end
 
   
@@ -15,23 +15,30 @@ class CtosController < ApplicationController
 
    #Show all available CTO
   def index
-         #Let's suggest that we cto has one service type
-    if params[:requestDate].to_s.empty? || params[:requestTime].to_s.empty?
-      @ctos = Cto.all.page params[:page]
+    #Commented the code until site will pass the 3-6 months pilot
+    # if params[:requestDate].to_s.empty? || params[:requestTime].to_s.empty?
+    #   @ctos = Cto.all.page params[:page]
+    #
+    # else
+    #   myDate=params[:requestDate].to_s+ ' ' + params[:requestTime].to_s+':00'
+    #   scheduleRequestDate = DateTime.strptime(myDate, '%d-%m-%Y %H:%M:%S')
+    #   @ctos = Cto.joins(:schedules).where("schedules.start>=? OR schedules.end>=?", scheduleRequestDate, scheduleRequestDate).page params[:page]
+    # end
+   # # create time structure. array of array
+   #  setAllowedTime
+   #
+   #  #Let's set params for request date
+   #  setSearchDate
+
+    if params[:myLocation].to_s.empty? || params[:radius].to_s.empty?
+        @ctos = Cto.all.page params[:page]
 
     else
-      myDate=params[:requestDate].to_s+ ' ' + params[:requestTime].to_s+':00'
-      scheduleRequestDate = DateTime.strptime(myDate, '%d-%m-%Y %H:%M:%S')
-      @ctos = Cto.joins(:schedules).where("schedules.start>=? OR schedules.end>=?", scheduleRequestDate, scheduleRequestDate).page params[:page]
+     @ctos=Cto.near(params[:myLocation].to_s,params[:radius].to_s,:order => "distance",:units => :km).page params[:page];
+
+      a=5;
     end
-
-
-   # create time structure. array of array
-    setAllowedTime
-
-    #Let's set params for request date
-    setSearchDate
-  end
+   end
 
  # set paramerer time and store it between search
   def setAllowedTime
@@ -70,7 +77,6 @@ class CtosController < ApplicationController
   def destroy
     @cto = Cto.find(params[:id])
     @cto.destroy
-
     redirect_to ctos_path
   end
 

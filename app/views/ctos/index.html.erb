@@ -1,90 +1,64 @@
-<script type="text/javascript">
-    function MapData (addresses,titles,descriptions, lats,lngs){
-        this.addresses = addresses;
-        this.titles = titles;
-        this.descriptions = descriptions;
-        this.lats = lats;
-        this.lngs = lngs;
-    }
-    var addresses = [];
-    var titles = [];
-    var descriptions = [];
-    var lats = [];
-    var lngs = [];
-
-    <% @ctos.each do |cto| %>
-        addresses.push("<%=cto.address%>");
-        titles.push("<%=cto.name%>");
-        titles.push("<%=cto.description%>");
-        lats.push("<%=cto.latitude%>");
-        lngs.push("<%=cto.longitude%>");
-    <% end %>
-
-
-     mapData = new MapData(addresses, titles, descriptions, lats, lngs);
-    //$(this).showRoutes(false,mapData);
-</script>
-
-
 <!--Form should perform a search according to distance and schedule.Let it be until schedule will not be implemented.TODO refactor search -->
 
    <!--Let's build custom search form -->
 <div style="padding:5px">
-  <%= form_tag({:controller=>'ctos', :action=>'index',:method=> 'get'},{:class =>'navbar-form navbar-left',:role => 'search'}) do%>
+  <%= form_tag({:controller=>'ctos', :action=>'index',:method=> 'post'},{:class =>'well form-inline',:role => 'search'}) do%>
     <div class="form-group">
-
-        <span>
-          <%= label_tag(:requestDate, "Дата запису") %>
-          <%= text_field_tag(:requestDate,@searchDate, 'data-date-format' => 'DD-MM-YYYY') %>
-         </span>
-
-        <span>
-          <%= label_tag(:requestTime, "Дата запису") %>
-          <!--Let's iterate over time to create time options -->
-          <%= select_tag(:requestTime, options_for_select(@timeStorage,@selectedTime)) %>
-        </span>
-
-        <span>
-
-
-        </span>
-
-      </div>
-       <span><%= submit_tag("Search", :class=>"btn btn-default") %></span>
+      <span>Моє поточне місцезнаходження <%= text_field_tag(:myLocation) %></span>
+      В радіусі, км<%= text_field_tag(:radius) %>
+      <!--Якщо значення вказане в полі то визначаємо а якщо не вказане то пробуємо автоматично визначити через GPS -->
+       <span>GPS<input type="checkbox" id="iseGPS" >&nbsp;<%= submit_tag("Пошук", :class=>"btn btn-default") %></span>
+    </div>
     <% end %>
 </div>
 
-<div style="text-align: center">
-  <%= paginate @ctos %>
-</div>
+<br/>
+<div class="container" id="main" style="float:left;width:100%">
+  <div style="text-align: center">
+    <%= paginate @ctos %>
+  </div>
 
-<div class="container" id="main" style="float:left">
-    <% @ctos.each_slice(3) do |ctoChunk|%>
-         <div class="row" style="margin:30px;height:200px;">
+  <% @ctos.each_slice(3) do |ctoChunk|%>
+         <div class="row">
              <% ctoChunk.each do |cto| %>
-              <div class="col-md-3 panel panel-primary" style="padding-left:0px;padding-right: 3px;">
-               <div class="panel-heading"><h3 class="panel-title"><%= cto.name %></h3></div>
-                <div class="panel-body">
-                  <div><%=raw t('.address',address:cto.address) %></div>
-                  <div><%= raw t('.contacts', contacts:cto.contacts) %></div>
-                </div>
-                <div style="clear:both;width:100%;text-align:right" class="panel-footer">
-                  <span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><span style="margin-right:1px;width:32%;font-size:10px;text-align:right"><%= link_to 'Про компанію', cto_path(cto), class: 'btn btn-default', style: 'font-size:10px' %></span>
-                </div>
-                </div>
+               <div class="col-md-4">
+                 <div class="panel panel-primary">
+                   <div class="panel-heading"><h3 class="panel-title"><%= cto.name %></h3></div>
+                   <div class="panel-body">
+                     <div><%= raw t('.address', address: cto.address) %></div>
+                     <div><%= raw t('.contacts', contacts: cto.contacts) %></div>
+
+
+                     <% if cto.has_attribute?("distance") %>
+                     <div>Відстань:<%= cto.distance%> км</div>
+                     <% end %>
+                   </div>
+                 </div>
+               </div>
               <% end %>
          </div>
-      <hr>
     <% end %>
+
+
+  <div style="text-align: center">
+    <%= paginate @ctos %>
+  </div>
+
  </div>
 
 
-  <div id="route_map" style="display:none;position:absolute">
-    <div id="map_canvas" style="width:400px;height:400px"></div>
-  </div>
 
 <script type="text/javascript">
-   $("#requestDate" ).datetimepicker({pickTime: false});
-   //$("#requestDate" ).datepicker( "option", "dateFormat","dd-mm-yy" );
-   //$("#requestDate" ).datepicker('setDate', '<%=@searchDate%>');
+    function getUserLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+    function showPosition(position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        document.getElementById("myLocation").value=lat+'  '+lng
+    }
 </script>
