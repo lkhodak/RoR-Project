@@ -4,8 +4,8 @@
 <div style="padding:5px">
   <%= form_tag({:controller=>'ctos', :action=>'index',:method=> 'post'},{:class =>'well form-inline',:role => 'search'}) do%>
     <div class="form-group">
-      <span>Моє поточне місцезнаходження <%= text_field_tag(:myLocation) %></span>
-      В радіусі, км<%= text_field_tag(:radius) %>
+      <span>Моє поточне місцезнаходження <%= text_field_tag(:myLocation, @currentLocation) %></span>
+      В радіусі, км<%= text_field_tag(:radius, @currentRadius) %>
       <!--Якщо значення вказане в полі то визначаємо а якщо не вказане то пробуємо автоматично визначити через GPS -->
        <span>GPS<input type="checkbox" id="iseGPS" >&nbsp;<%= submit_tag("Пошук", :class=>"btn btn-default") %></span>
     </div>
@@ -31,6 +31,10 @@
                      <% if cto.has_attribute?("distance") %>
                      <div>Відстань:<%= cto.distance%> км</div>
                      <% end %>
+                   </div>
+                   <div class="panel-footer" style="text-align: right">
+                     <div class="collapse" id="viewdetails">Ваш маршрут</div>
+                     <a class="btn" data-toggle="collapse" data-target="#viewdetails">Показати маршрут</a>
                    </div>
                  </div>
                </div>

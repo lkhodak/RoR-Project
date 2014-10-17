@@ -36,7 +36,10 @@ class CtosController < ApplicationController
     else
      @ctos=Cto.near(params[:myLocation].to_s,params[:radius].to_s,:order => "distance",:units => :km).page params[:page];
 
-      a=5;
+     #Store search values as default
+     @currentLocation=params[:myLocation].to_s;
+     @currentRadius=params[:radius].to_s;
+
     end
    end
 
