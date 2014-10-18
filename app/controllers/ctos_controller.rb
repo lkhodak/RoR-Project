@@ -30,15 +30,21 @@ class CtosController < ApplicationController
    #  #Let's set params for request date
    #  setSearchDate
 
+    @currentLocation=params[:myLocation].to_s;
+    @currentRadius=params[:radius].to_s;
+
     if params[:myLocation].to_s.empty? || params[:radius].to_s.empty?
         @ctos = Cto.all.page params[:page]
+
+        #Set current data for search params
+        @currentLocation='Ivano-Frankivsk';
+        @currentRadius=2;
 
     else
      @ctos=Cto.near(params[:myLocation].to_s,params[:radius].to_s,:order => "distance",:units => :km).page params[:page];
 
      #Store search values as default
-     @currentLocation=params[:myLocation].to_s;
-     @currentRadius=params[:radius].to_s;
+
 
     end
    end

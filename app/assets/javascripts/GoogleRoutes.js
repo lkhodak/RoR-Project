@@ -72,7 +72,7 @@
     $.fn.showRoutes = function(cashedGeocoding, data) {
 
         //Let's build the addresses and geocode them if necessary
-        populateInternalData();
+        //populateInternalData();
 
 
        //Populate internal module variables with data
@@ -82,6 +82,7 @@
         var lats = data.lats;
         var lngs = data.lngs;
         recordCount = addresses.length;
+        inputDataHash={};
         //Create external hash of data
         for (var i = 0; i < addresses.length; i++) {
             if (lats.length == 0 || lngs.length == 0) {
@@ -203,7 +204,6 @@
 
     function visualizeMap(inputDataHash) {
 
-
         latlng = getMapCenter(inputDataHash);
         // set map options
         // set zoom level
@@ -222,6 +222,7 @@
         // set the div id where it will be shown
         // set the map options
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
         // generate routes between map points
         directionsService = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer(
@@ -232,7 +233,6 @@
         directionsDisplay.setMap(map);
         distance = '';
         var index = 0;
-
 
         for (var key in inputDataHash) {
             (function (key, index) {
@@ -257,12 +257,18 @@
 
                         if (index == recordCount-1) {
                             drawSign(inputDataHash);
+
                         }
                     }
                 });
             })(key, index);
             index = index + 1;
         }
+
+        google.maps.event.trigger(map, 'resize');
+
+
+
     }
 
 
