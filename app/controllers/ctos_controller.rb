@@ -13,27 +13,19 @@ class CtosController < ApplicationController
     @cto = Cto.find(params[:id])
   end
 
+
+  def numeric?(object)
+    true if Float(object) rescue false
+  end
+
+
    #Show all available CTO
   def index
-    #Commented the code until site will pass the 3-6 months pilot
-    # if params[:requestDate].to_s.empty? || params[:requestTime].to_s.empty?
-    #   @ctos = Cto.all.page params[:page]
-    #
-    # else
-    #   myDate=params[:requestDate].to_s+ ' ' + params[:requestTime].to_s+':00'
-    #   scheduleRequestDate = DateTime.strptime(myDate, '%d-%m-%Y %H:%M:%S')
-    #   @ctos = Cto.joins(:schedules).where("schedules.start>=? OR schedules.end>=?", scheduleRequestDate, scheduleRequestDate).page params[:page]
-    # end
-   # # create time structure. array of array
-   #  setAllowedTime
-   #
-   #  #Let's set params for request date
-   #  setSearchDate
 
     @currentLocation=params[:myLocation].to_s;
     @currentRadius=params[:radius].to_s;
 
-    if params[:myLocation].to_s.empty? || params[:radius].to_s.empty?
+     if params[:myLocation].to_s.empty? || params[:radius].to_s.empty?
         @ctos = Cto.all.page params[:page]
 
         #Set current data for search params

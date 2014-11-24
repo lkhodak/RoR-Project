@@ -3,6 +3,9 @@ uk:
       index:
         contacts: "<span style='font-weight:bold'>Контакти:</span>: %{contacts}"
         address: "<span style='font-weight:bold'>Адреса:</span> %{address}"
+        distance: "<span style='font-weight:bold'>Відстань:</span> %{distance} км"
+        myCurrentLocation: "Моє поточне місцезнаходження"
+        myRadius: "В радіусі, км"
         bookLinkText: Записатися
         aboutCompanyLinkText: Про компанію
 

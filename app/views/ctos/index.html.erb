@@ -1,13 +1,9 @@
-<!--Form should perform a search according to distance and schedule.Let it be until schedule will not be implemented.TODO refactor search -->
-
-   <!--Let's build custom search form -->
 <div style="padding:5px">
   <%= form_tag({:controller=>'ctos', :action=>'index',:method=> 'post'},{:class =>'well form-inline',:role => 'search'}) do%>
     <div class="form-group">
-      <span>Моє поточне місцезнаходження <%= text_field_tag(:myLocation, @currentLocation) %></span>
-      В радіусі, км<%= text_field_tag(:radius, @currentRadius) %>
-      <!--Якщо значення вказане в полі то визначаємо а якщо не вказане то пробуємо автоматично визначити через GPS -->
-       <span>GPS<input type="checkbox" id="iseGPS" >&nbsp;<%= submit_tag("Пошук", :class=>"btn btn-default") %></span>
+      <span><%=raw t('.myCurrentLocation')%> <%= text_field_tag(:myLocation, @currentLocation) %></span>
+      В радіусі, км<%= text_field_tag(:radius, @currentRadius,:type=>"number") %>
+      &nbsp;<%= submit_tag("Пошук", :class=>"btn btn-default") %></span>
     </div>
     <% end %>
 </div>
@@ -29,85 +25,19 @@
                      <div><%= raw t('.contacts', contacts: cto.contacts) %></div>
 
                      <% if cto.has_attribute?("distance") %>
-                     <div>Відстань:<%= cto.distance%> км</div>
+                         <div><%= raw t('.distance', distance: cto.distance)%></div>
                      <% end %>
                    </div>
-                   <div class="panel-footer" style="text-align: right">
-
-                     <a class="btn router" onClick="showContextInfo('<%=  escape_javascript @currentLocation %>','<%= escape_javascript cto.address%>',currentLocationParams.geometry.location.lat(),currentLocationParams.geometry.location.lng(),<%=cto.latitude %>,<%=cto.longitude %>);">Показати маршрут</a>
-                   </div>
+                   <div class="panel-footer" style="text-align: right"></div>
                  </div>
                </div>
               <% end %>
          </div>
     <% end %>
 
-
-
   <div style="text-align: center">
     <%= paginate @ctos %>
   </div>
-
  </div>
 
-<div id="showContextInfo" style="margin: 0; padding: 0;position:absolute;display: none;z-index:100">
-  <div id="directions">Опис маршруту як добратись</div>
-  <div id="map_canvas" style="height:1000px;width:1000px; margin: 0; padding: 0;"></div>
-</div>
-
-
-
-
-<script type="text/javascript">
-
-  // Need to geocode current location to have an ability to draw the direction
-  var data=[];
-  var currentLocationParams='';
-
-
-  geocoder = new google.maps.Geocoder();
-  geocoder.geocode({'address': '<%= escape_javascript @currentLocation%>'}, function (results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-          //Populate external structure with request result.So value[2] is a response.
-          currentLocationParams=results[0];
-      } else {
-          alert("Проблеми з сервісом Google: " + status);
-      }
-  });
-
-  $(".router").click(function(e){
-      $("#showContextInfo")
-              .css({top:e.pageY + 'px',left:e.pageX + 'px'})
-              .toggle(); // .toggle() if you need it to close with next click
-  });
-
-  $('#showContextInfo').draggable();
-
-    function showContextInfo (a, b,latA,lngA,latB,lngB){
-       //Reload googlemaps if necessary
-        var data=[];
-        data.addresses=[a, b];
-        data.titles=['A','B'];
-        data.descriptions=['A','B'];
-        data.lats = [latA,latB];
-        data.lngs = [lngA,lngB];
-
-        //Show the map
-        $(this).showRoutes(false, data);
-    }
-
-    function getUserLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
-    }
-    function showPosition(position) {
-        var lat = position.coords.latitude;
-        var lng = position.coords.longitude;
-        document.getElementById("myLocation").value=lat+'  '+lng
-    }
-
-
-</script>
+<!--Check mapDraft file for routing -->
