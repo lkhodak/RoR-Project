@@ -22,5 +22,6 @@ module CTO
 
     #Autoload classes from lib directory
     config.autoload_paths += Dir["#{config.root}/lib"]
+    config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-57048688-1'
   end
   end
