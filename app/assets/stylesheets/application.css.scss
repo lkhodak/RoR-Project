@@ -2,6 +2,11 @@
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
 
+$primary-color: #ffffff;
+.navText {color:$primary-color}
+.navbar-default {background-color: #428bca;margin:0px}
+body {padding-top:0px}
+
 
 
 

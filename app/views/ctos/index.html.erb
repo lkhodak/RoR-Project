@@ -1,27 +1,35 @@
+<div class="navbar navbar-default">
+  <div class="container container-fluid">
+    <div class="navbar-header">
+        <h1 style="color:white">Каталог мийок Івано-Франківська</h1>
+    </div>
+  </div>
+</div>
+
 <div style="padding:5px">
-  <%= form_tag({:controller=>'ctos', :action=>'index',:method=> 'post'},{:class =>'well form-inline',:role => 'search'}) do%>
+  <%= form_tag({:controller=>'ctos', :action=>'index',:method=> 'post'},{:class =>'navbar-form navbar-left',:role => 'search'}) do%>
     <div class="form-group">
-      <span><%=raw t('.myCurrentLocation')%> <%= text_field_tag(:myLocation, @currentLocation) %></span>
-      В радіусі, км<%= text_field_tag(:radius, @currentRadius,:type=>"number") %>
-      &nbsp;<%= submit_tag("Пошук", :class=>"btn btn-default") %></span>
+      <span> <label for="currentRadius"><%=raw t('.myCurrentLocation')%></label><%= text_field_tag(:myLocation, @currentLocation,:id=>"currentLocation", :class=>"form-control") %></span>
+      <label for="currentRadius"> В радіусі, км</label><%= text_field_tag(:radius, @currentRadius,:type=>"number", :id=>"currentRadius", :class=>"form-control") %>
+      <%= button_tag(type: 'submit', class: 'form-control btn btn-primary') do %>
+        Пошук&nbsp;<span class="glyphicon glyphicon-search"></span>
+      <%end %>
+      </span>
     </div>
     <% end %>
 </div>
-
-<br/>
 <div class="container" id="main" style="float:left;width:100%">
   <div style="text-align: center">
     <%= paginate @ctos %>
   </div>
-
   <% @ctos.each_slice(3) do |ctoChunk|%>
          <div class="row">
              <% ctoChunk.each do |cto| %>
-               <div class="col-md-4">
+               <div class=" col-sm-4 col-md-4">
                  <div class="panel panel-primary">
                    <div class="panel-heading"><h3 class="panel-title"><%= cto.name %></h3></div>
                    <div class="panel-body">
-                     <div><%= raw t('.address', address: cto.address) %></div>
+                     <div onClick="ga('send', 'event', 'interested_in_address', 'click', {location: document.getElementById('currentLocation').value})"><%= raw t('.address', address: cto.address) %></div>
                      <div><%= raw t('.contacts', contacts: cto.contacts) %></div>
 
                      <% if cto.has_attribute?("distance") %>
@@ -34,10 +42,7 @@
               <% end %>
          </div>
     <% end %>
-
   <div style="text-align: center">
     <%= paginate @ctos %>
   </div>
  </div>
-
-<!--Check mapDraft file for routing -->
