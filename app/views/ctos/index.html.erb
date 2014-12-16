@@ -29,7 +29,7 @@
                  <div class="panel panel-primary">
                    <div class="panel-heading"><h3 class="panel-title"><%= cto.name %></h3></div>
                    <div class="panel-body">
-                     <div onClick="ga('send', 'event', 'interested_in_address', 'click', {location: document.getElementById('currentLocation').value})"><%= raw t('.address', address: cto.address) %></div>
+                     <div onClick="_gaq.push(['_trackEvent', 'Videos', 'Play', 'Gone With the Wind']);"><%= raw t('.address', address: cto.address) %></div>
                      <div><%= raw t('.contacts', contacts: cto.contacts) %></div>
 
                      <% if cto.has_attribute?("distance") %>
