@@ -11,7 +11,7 @@
     <div class="form-group">
       <span> <label for="currentRadius"><%=raw t('.myCurrentLocation')%></label><%= text_field_tag(:myLocation, @currentLocation,:id=>"currentLocation", :class=>"form-control") %></span>
       <label for="currentRadius"> В радіусі, км</label><%= text_field_tag(:radius, @currentRadius,:type=>"number", :id=>"currentRadius", :class=>"form-control") %>
-      <%= button_tag(type: 'submit', class: 'form-control btn btn-primary',onClick:"_gaq.push(['_trackEvent', 'Videos', 'Play', 'Gone With the Wind']);") do %>
+      <%= button_tag(type: 'submit', class: 'form-control btn btn-primary',onClick:"ga('send', 'Search', 'Locations', 'click', $('currentLocation').val, 1);") do %>
         Пошук&nbsp;<span class="glyphicon glyphicon-search"></span>
       <%end %>
       </span>
