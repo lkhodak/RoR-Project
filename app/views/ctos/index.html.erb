@@ -11,7 +11,7 @@
     <div class="form-group">
       <span> <label for="currentRadius"><%=raw t('.myCurrentLocation')%></label><%= text_field_tag(:myLocation, @currentLocation,:id=>"currentLocation", :class=>"form-control") %></span>
       <label for="currentRadius"> В радіусі, км</label><%= text_field_tag(:radius, @currentRadius,:type=>"number", :id=>"currentRadius", :class=>"form-control") %>
-      <%= button_tag(type: 'submit', class: 'form-control btn btn-primary') do %>
+      <%= button_tag(type: 'submit', class: 'form-control btn btn-primary',onClick:"_gaq.push(['_trackEvent', 'Videos', 'Play', 'Gone With the Wind']);") do %>
         Пошук&nbsp;<span class="glyphicon glyphicon-search"></span>
       <%end %>
       </span>
@@ -29,7 +29,7 @@
                  <div class="panel panel-primary">
                    <div class="panel-heading"><h3 class="panel-title"><%= cto.name %></h3></div>
                    <div class="panel-body">
-                     <div onClick="_gaq.push(['_trackEvent', 'Videos', 'Play', 'Gone With the Wind']);"><%= raw t('.address', address: cto.address) %></div>
+                     <div><%= raw t('.address', address: cto.address) %></div>
                      <div><%= raw t('.contacts', contacts: cto.contacts) %></div>
 
                      <% if cto.has_attribute?("distance") %>
